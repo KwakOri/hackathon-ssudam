@@ -1,12 +1,11 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import { cn } from "@/utils/cn";
 
 const ButtonVariants = cva("", {
   variants: {
     intent: {
       greenFill: "text-static-white bg-primary-heavy",
-      greenWeak: "text-primary-heavy bg-primary-light",
+      greenWeak: "text-primary-heavy bg-primary-light ",
       dark: "text-static-white bg-label-normal",
       light:
         "text-label-neutral bg-background-normal outline outline-{1px} outline-line-normal",
@@ -39,7 +38,7 @@ const Button = ({
   ...props
 }: PropsWithChildren<ButtonProps>) => {
   return (
-    <button className={cn(ButtonVariants({ intent, size }))} {...props}>
+    <button className={ButtonVariants({ intent, size })} {...props}>
       {children}
     </button>
   );
