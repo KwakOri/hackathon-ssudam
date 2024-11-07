@@ -1,8 +1,9 @@
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import Image from "next/image";
+import AvatarDummy from "/public/images/avatar.png";
 
-const AvatarVariants = cva("relative", {
+const AvatarVariants = cva("relative overflow-hidden", {
   variants: {
     shape: {
       circle: "rounded-full",
@@ -54,7 +55,7 @@ interface AvatarProps extends VariantProps<typeof AvatarVariants> {}
 const Avatar = ({ shape, size }: AvatarProps) => {
   return (
     <div className={cn(AvatarVariants({ shape, size }))}>
-      <Image src={"/images/avatar.png"} alt="avatar" fill />
+      <Image src={AvatarDummy} alt="avatar" fill />
     </div>
   );
 };
