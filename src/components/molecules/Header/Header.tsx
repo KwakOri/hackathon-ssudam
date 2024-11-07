@@ -14,20 +14,18 @@ const Header = ({
   title = "title",
 }: PropsWithChildren<HeaderProps>) => {
   return (
-    <div className="flex justify-between w-full h-[58px] border-b border-line-normal">
+    <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal">
       {intent === "main" ? (
         <>
-          <div>
-            <div className="flex justify-center items-center w-9 h-[26px] text-title1 font-semibold">
-              LOGO
-            </div>
-            <h2 className="text-body1 font-semibold"></h2>
+          <div className="flex gap-2">
+            <Paragraph>LOGO</Paragraph>
+            <Paragraph>{title}</Paragraph>
           </div>
         </>
       ) : (
         <>
           <button>
-            <SVGIcon icon={"Menu"} />
+            <SVGIcon icon={"ArrowLeft"} />
           </button>
           {intent === "label" ? (
             <Paragraph>{title}</Paragraph>
