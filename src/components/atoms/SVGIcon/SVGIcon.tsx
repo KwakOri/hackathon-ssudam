@@ -80,14 +80,14 @@ const SVGIconVariants = cva("", {
 
 interface SVGIconProps extends VariantProps<typeof SVGIconVariants> {
   icon: keyof typeof ICON_MAP;
-  size: number;
+  size?: number;
 }
 
 const SVGIcon: React.FC<SVGIconProps> = ({
   icon,
-  color,
-  bold,
-  size,
+  bold = false,
+  color = "gray",
+  size = 24,
 }: SVGIconProps) => {
   const Icon: React.LazyExoticComponent<
     React.FC<React.SVGProps<SVGSVGElement>>

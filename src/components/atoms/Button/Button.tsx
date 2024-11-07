@@ -1,3 +1,4 @@
+import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 
@@ -27,7 +28,7 @@ const Button = ({
   ...props
 }: PropsWithChildren<ButtonProps>) => {
   return (
-    <button className={ButtonVariants({ intent, size })} {...props}>
+    <button className={cn(ButtonVariants({ intent, size }))} {...props}>
       {children}
     </button>
   );
