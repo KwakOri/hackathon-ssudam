@@ -1,11 +1,9 @@
-import Button from "@/components/atoms/Button";
+import Header from "@/components/molecules/Header/Header";
 
 export default function Home() {
   return (
-    <main className=" bg-white w-screen h-screen bg-line-normal flex justify-center items-center">
-      <Button intent={"redFill"} size={"xl"}>
-        I'm Button
-      </Button>
+    <main className=" w-screen h-screen bg-line-normal">
+      <Header intent="labelWithIcon" title="AI" />
     </main>
   );
 }
