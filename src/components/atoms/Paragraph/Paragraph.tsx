@@ -12,14 +12,20 @@ interface ParagraphProps {
     | "heading1"
     | "heading2";
   fontWeight?: "regular" | "medium" | "semibold" | "bold";
+  className?: string;
 }
 
 const Paragraph = ({
   children,
   fontSize = "body1",
   fontWeight = "semibold",
+  className = "",
 }: PropsWithChildren<ParagraphProps>) => {
-  return <p className={`text-${fontSize} font-${fontWeight}`}>{children}</p>;
+  return (
+    <p className={`text-${fontSize} font-${fontWeight} ${className}`}>
+      {children}
+    </p>
+  );
 };
 
 export default Paragraph;
