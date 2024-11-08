@@ -1,6 +1,6 @@
 import Divider from "@/components/atoms/Divider";
-import SidebarSectionTitle from "@/components/atoms/SidebarSectionTitle";
 import SidebarCategory from "@/components/molecules/SidebarCategory";
+import SidebarSectionTitle from "@/components/molecules/SidebarSectionTitle";
 import SidebarHeader from "@/components/organisms/SidebarHeader";
 
 const Sidebar = () => {
@@ -17,7 +17,7 @@ const Sidebar = () => {
           <SidebarCategory icon={"Home"} label={"홈"} />
           <SidebarCategory icon={"Chat"} label={"AI 심리상담"} />
           <SidebarCategory icon={"Map"} label={"주변 시설 안내"} />
-          <SidebarCategory icon={"Book"} label={"지원 정보"} />
+          <SidebarCategory icon={"Book"} label={"지원 정보"} isDropDown />
         </div>
       </article>
       <div className="px-4">

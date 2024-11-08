@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import SidebarSectionTitle from "@/components/atoms/SidebarSectionTitle";
+import SidebarSectionTitle from "@/components/molecules/SidebarSectionTitle";
 
 const meta = {
-  title: "Atoms/SidebarSectionTitle",
+  title: "Molecules/SidebarSectionTitle",
   component: SidebarSectionTitle,
   parameters: {
     layout: "centered",

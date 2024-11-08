@@ -20,6 +20,7 @@ const meta = {
   },
   render: function Render(args) {
     const [isActive, setIsActive] = useState<boolean>(false);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const clickCursor = (i: number) => {
       setIsActive((prev) => !prev);
     };

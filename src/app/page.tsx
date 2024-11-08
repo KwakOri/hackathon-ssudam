@@ -1,9 +1,9 @@
-import Paragraph from "@/components/atoms/Paragraph/Paragraph";
+import SVGIcon from "@/components/atoms/SVGIcon";
 
 export default function Home() {
   return (
     <main className=" w-screen h-screen bg-line-normal">
-      <Paragraph className="text-label-neutral">안녕하세요</Paragraph>
+      <SVGIcon icon={"ArrowDown"} />
     </main>
   );
 }

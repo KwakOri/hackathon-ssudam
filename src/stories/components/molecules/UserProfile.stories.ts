@@ -10,8 +10,8 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    avatar: { description: "" },
-    nickname: "유저",
+    avatar: { description: "사용자 프로필 이미지 주소" },
+    nickname: { description: "사용자 닉네임" },
   },
   args: {},
 } satisfies Meta<typeof UserProfile>;

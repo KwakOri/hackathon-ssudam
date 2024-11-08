@@ -62,13 +62,10 @@ const meta = {
     bold: { description: "아이콘의 두께", control: "boolean" },
     size: {
       description: "아이콘의 크기",
-      control: {
-        type: "range",
-        min: 16,
-        max: 24,
-        step: 4,
-      },
+      control: "multi-select",
+      options: ["sm", "md", "lg"],
     },
+    className: { description: "아이콘의 클래스명", control: "text" },
   },
   args: {},
 } satisfies Meta<typeof SVGIcon>;
@@ -79,8 +76,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     icon: "Setting",
-    size: 24,
+    size: "md",
     bold: false,
     color: "gray",
+    className: "",
   },
 };
