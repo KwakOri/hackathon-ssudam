@@ -107,62 +107,6 @@ const config: Config = {
       background: "var(--background)",
       foreground: "var(--foreground)",
     },
-    fontSize: {
-      title1: [
-        "28px",
-        {
-          lineHeight: "135%",
-        },
-      ],
-      title2: [
-        "24px",
-        {
-          lineHeight: "140%",
-        },
-      ],
-      heading1: [
-        "20px",
-        {
-          lineHeight: "140%",
-        },
-      ],
-      heading2: [
-        "18px",
-        {
-          lineHeight: "140%",
-        },
-      ],
-      body1: [
-        "16px",
-        {
-          lineHeight: "160%",
-        },
-      ],
-      body2: [
-        "14px",
-        {
-          lineHeight: "160%",
-        },
-      ],
-      label: [
-        "15px",
-        {
-          lineHeight: "150%",
-        },
-      ],
-      caption1: [
-        "12px",
-        {
-          lineHeight: "130%",
-        },
-      ],
-      caption2: [
-        "10px",
-        {
-          lineHeight: "130%",
-        },
-      ],
-    },
   },
   plugins: [],
 };

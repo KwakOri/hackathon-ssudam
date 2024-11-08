@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import PaginationBar from "@/components/molecules/PaginationBar";
+import PaginationBar from "@/components/atoms/PaginationBar";
 
 const meta = {
   title: "Atoms/PaginationBar",

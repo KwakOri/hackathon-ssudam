@@ -2,10 +2,10 @@ import Paragraph from "@/components/atoms/Paragraph/Paragraph";
 interface FunnelPanelTitle {
   title: string;
   steps: number;
-  currentSteps: number;
+  currentStep: number;
 }
 
-const FunnelPanelTitle = ({ title, steps, currentSteps }: FunnelPanelTitle) => {
+const FunnelPanelTitle = ({ title, steps, currentStep }: FunnelPanelTitle) => {
   return (
     <div className="w-full flex justify-between items-center">
       <Paragraph>{title}</Paragraph>
@@ -14,7 +14,7 @@ const FunnelPanelTitle = ({ title, steps, currentSteps }: FunnelPanelTitle) => {
         fontWeight={"medium"}
         className={"text-label-alternative"}
       >
-        {currentSteps}/{steps}
+        {currentStep}/{steps}
       </Paragraph>
     </div>
   );

@@ -50,9 +50,11 @@ const AvatarVariants = cva("relative overflow-hidden", {
   },
 });
 
-interface AvatarProps extends VariantProps<typeof AvatarVariants> {}
+interface AvatarProps extends VariantProps<typeof AvatarVariants> {
+  avatar: string;
+}
 
-const Avatar = ({ shape, size }: AvatarProps) => {
+const Avatar = ({ shape, size, avatar }: AvatarProps) => {
   return (
     <div className={cn(AvatarVariants({ shape, size }))}>
       <Image src={AvatarDummy} alt="avatar" fill />

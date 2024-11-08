@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
 import PaginationCarousel from "@/components/molecules/PaginationCarousel";
+import { useState } from "storybook/internal/preview-api";
 
 const meta = {
   title: "Molecules/PaginationCarousel",
@@ -11,11 +12,24 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    currentIndex: { description: "현재 cursor의 인덱스 위치" },
+    activeIndex: { description: "현재 cursor의 인덱스 위치" },
     length: { description: "carousel의 총 길이" },
   },
   args: {
-    onClick: fn(),
+    clickCursor: fn(),
+  },
+  render: function Render(args) {
+    const [activeIndex, setActiveIndex] = useState<number>(0);
+    const clickCursor = (i: number) => {
+      setActiveIndex(i);
+    };
+    return (
+      <PaginationCarousel
+        {...args}
+        clickCursor={clickCursor}
+        activeIndex={activeIndex}
+      />
+    );
   },
 } satisfies Meta<typeof PaginationCarousel>;
 
@@ -24,7 +38,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    currentIndex: 0,
+    activeIndex: 0,
     length: 5,
   },
 };
