@@ -17,6 +17,7 @@ const SidebarCategory = ({
   isDropDown = false,
   ...props
 }: SidebarCategoryProps) => {
+  const isIconStar = icon === "StarActiveFalse";
   return (
     <button
       {...props}
@@ -31,11 +32,14 @@ const SidebarCategory = ({
         ></div>
       )}
       <div className="flex items-center gap-3">
+        {/* SVGIcon에서 StarActiveFalse는 export 관련 문제로 color 관련 className 예외 코드를 추가함 */}
         <SVGIcon
           icon={icon}
           size={"md"}
           color={isActive ? "primary" : "black"}
+          className={isIconStar ? "fill-none stroke-label-strong" : ""}
         />
+
         <Paragraph
           className={isActive ? "text-primary-heavy" : "text-label-normal"}
         >
