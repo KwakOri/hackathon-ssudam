@@ -1,6 +1,6 @@
 import Divider from "@/components/atoms/Divider";
-import SidebarSectionTitle from "@/components/atoms/SidebarSectionTitle";
 import SidebarCategory from "@/components/molecules/SidebarCategory";
+import SidebarSectionTitle from "@/components/molecules/SidebarSectionTitle";
 import SidebarHeader from "@/components/organisms/SidebarHeader";
 
 const Sidebar = () => {

@@ -30,16 +30,22 @@ const ButtonVariants = cva("", {
 
 interface ButtonProps
   extends VariantProps<typeof ButtonVariants>,
-    ButtonHTMLAttributes<HTMLButtonElement> {}
+    ButtonHTMLAttributes<HTMLButtonElement> {
+  className?: string;
+}
 
 const Button = ({
   children,
   intent,
   size,
+  className,
   ...props
 }: PropsWithChildren<ButtonProps>) => {
   return (
-    <button className={cn(ButtonVariants({ intent, size }))} {...props}>
+    <button
+      className={cn(ButtonVariants({ intent, size, className }))}
+      {...props}
+    >
       {children}
     </button>
   );

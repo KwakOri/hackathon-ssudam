@@ -38,13 +38,6 @@ const meta = {
     isDropDown: { description: "드롭다운 활성화 여부", control: "boolean" },
   },
   args: {},
-  render: function Render(args) {
-    const [isActive, setIsActive] = useState<boolean>(false);
-    const toggleCategory = () => setIsActive((prev) => !prev);
-    return (
-      <SidebarCategory {...args} onClick={toggleCategory} isActive={isActive} />
-    );
-  },
 } satisfies Meta<typeof SidebarCategory>;
 
 export default meta;
@@ -65,12 +58,26 @@ export const Chat: Story = {
     label: "AI 심리상담",
     isActive: true,
   },
+  render: function Render({ isActive: isActiveInit, ...args }) {
+    const [isActive, setIsActive] = useState<boolean>(isActiveInit as boolean);
+    const toggleCategory = () => setIsActive((prev) => !prev);
+    return (
+      <SidebarCategory onClick={toggleCategory} isActive={isActive} {...args} />
+    );
+  },
 };
 export const Map: Story = {
   args: {
     icon: "Map",
     label: "주변 시설 안내",
     isActive: true,
+  },
+  render: function Render({ isActive: isActiveInit, ...args }) {
+    const [isActive, setIsActive] = useState<boolean>(isActiveInit as boolean);
+    const toggleCategory = () => setIsActive((prev) => !prev);
+    return (
+      <SidebarCategory onClick={toggleCategory} isActive={isActive} {...args} />
+    );
   },
 };
 export const Info: Story = {
@@ -79,5 +86,12 @@ export const Info: Story = {
     label: "지원 정보",
     isActive: true,
     isDropDown: true,
+  },
+  render: function Render({ isActive: isActiveInit, ...args }) {
+    const [isActive, setIsActive] = useState<boolean>(isActiveInit as boolean);
+    const toggleCategory = () => setIsActive((prev) => !prev);
+    return (
+      <SidebarCategory onClick={toggleCategory} isActive={isActive} {...args} />
+    );
   },
 };
