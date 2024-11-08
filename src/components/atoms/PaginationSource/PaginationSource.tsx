@@ -1,8 +1,8 @@
 import { cn } from "@/utils/cn";
-import { cva, VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { ButtonHTMLAttributes } from "react";
 
-const PaginationSourceVariants = cva(" h-1 rounded-full", {
+const PaginationSourceVariants = cva("transition-all h-1 rounded-full", {
   variants: {
     isActive: {
       true: "bg-primary-normal w-5",
@@ -12,12 +12,22 @@ const PaginationSourceVariants = cva(" h-1 rounded-full", {
 });
 
 interface PaginationSourceProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof PaginationSourceVariants> {}
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
+  currentIndex: number;
+  activeIndex: number;
+  clickCursor: (i: number) => void;
+}
 
-const PaginationSource = ({ isActive, ...props }: PaginationSourceProps) => {
+const PaginationSource = ({
+  currentIndex,
+  activeIndex,
+  clickCursor,
+  ...props
+}: PaginationSourceProps) => {
+  const isActive = currentIndex === activeIndex;
   return (
     <button
+      onClick={() => clickCursor(currentIndex)}
       className={cn(PaginationSourceVariants({ isActive }))}
       {...props}
     ></button>

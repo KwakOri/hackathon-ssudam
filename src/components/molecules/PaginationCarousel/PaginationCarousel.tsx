@@ -1,16 +1,15 @@
 import PaginationSource from "@/components/atoms/PaginationSource";
-import { MouseEventHandler } from "react";
 
 interface PaginationCarouselProps {
   length: number;
-  currentIndex: number;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  activeIndex: number;
+  clickCursor: (i: number) => void;
 }
 
 const PaginationCarousel = ({
   length,
-  currentIndex,
-  onClick,
+  activeIndex,
+  clickCursor,
 }: PaginationCarouselProps) => {
   return (
     <ul className="flex gap-1">
@@ -18,7 +17,11 @@ const PaginationCarousel = ({
         .fill(0)
         .map((_, i) => (
           <li key={i}>
-            <PaginationSource isActive={i === currentIndex} onClick={onClick} />
+            <PaginationSource
+              currentIndex={i}
+              activeIndex={activeIndex}
+              clickCursor={clickCursor}
+            />
           </li>
         ))}
     </ul>
