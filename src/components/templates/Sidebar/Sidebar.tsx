@@ -17,7 +17,7 @@ const Sidebar = () => {
           <SidebarCategory icon={"Home"} label={"홈"} />
           <SidebarCategory icon={"Chat"} label={"AI 심리상담"} />
           <SidebarCategory icon={"Map"} label={"주변 시설 안내"} />
-          <SidebarCategory icon={"Book"} label={"지원 정보"} />
+          <SidebarCategory icon={"Book"} label={"지원 정보"} isDropDown />
         </div>
       </article>
       <div className="px-4">

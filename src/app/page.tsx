@@ -1,9 +1,9 @@
-import ChatInputBox from "@/components/organisms/ChatInputBox";
+import SVGIcon from "@/components/atoms/SVGIcon";
 
 export default function Home() {
   return (
     <main className=" w-screen h-screen bg-line-normal">
-      <ChatInputBox />
+      <SVGIcon icon={"ArrowDown"} />
     </main>
   );
 }

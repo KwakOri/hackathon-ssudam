@@ -1,5 +1,4 @@
 import { IconMap, IconMapTypes, IconSizes } from "@/icons/icons";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { lazy, Suspense } from "react";
 
@@ -74,7 +73,7 @@ const SVGIcon: React.FC<SVGIconProps> = ({
       }
     >
       <Icon
-        className={cn(SVGIconVariants({ color, bold, className }))}
+        className={SVGIconVariants({ color, bold, className })}
         width={IconSizes[size]}
         height={IconSizes[size]}
       />

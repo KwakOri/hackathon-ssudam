@@ -6,7 +6,7 @@ const SidebarSectionTitle = ({ children }: PropsWithChildren) => {
     <Paragraph
       fontSize={"caption1"}
       fontWeight={"medium"}
-      className="text-label-neutral"
+      className="text-label-neutral px-4"
     >
       {children}
     </Paragraph>
