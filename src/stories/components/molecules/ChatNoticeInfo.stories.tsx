@@ -14,7 +14,7 @@ const meta = {
     content: { description: "ChatNoticeInfo Content" },
     intent: {
       description: "ChatNoticeInfo Theme",
-      control: "multi-select",
+      control: "select",
       options: ["redFill", "dark", "greenFill"],
     },
   },

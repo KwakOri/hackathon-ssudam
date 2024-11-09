@@ -12,7 +12,7 @@ const meta = {
   argTypes: {
     icon: {
       description: "아이콘 유형",
-      control: "multi-select",
+      control: "select",
       options: [
         "ArrowDown",
         "ArrowLeft",
@@ -56,13 +56,13 @@ const meta = {
     },
     color: {
       description: "아이콘의 색상",
-      control: "multi-select",
+      control: "select",
       options: ["gray", "white", "black"],
     },
     bold: { description: "아이콘의 두께", control: "boolean" },
     size: {
       description: "아이콘의 크기",
-      control: "multi-select",
+      control: "select",
       options: ["sm", "md", "lg"],
     },
     className: { description: "아이콘의 클래스명", control: "text" },

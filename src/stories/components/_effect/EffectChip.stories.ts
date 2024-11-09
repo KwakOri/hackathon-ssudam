@@ -13,7 +13,7 @@ const meta = {
   argTypes: {
     effect: {
       description: "Effect 속성",
-      control: "multi-select",
+      control: "select",
       options: Object.keys(EffectStyles),
     },
   },
