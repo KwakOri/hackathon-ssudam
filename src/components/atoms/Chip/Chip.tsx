@@ -1,7 +1,6 @@
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import { IconMapTypes } from "@/icons/icons";
 import SVGIcon from "@/components/atoms/SVGIcon";
 
 const ChipVariants = cva("rounded-full ", {
