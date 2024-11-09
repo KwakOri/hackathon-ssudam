@@ -1,6 +1,6 @@
 import { IconMap, IconMapTypes, IconSizes } from "@/icons/icons";
 import { cva, VariantProps } from "class-variance-authority";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useMemo } from "react";
 
 const SVGIconVariants = cva("", {
   variants: {
@@ -58,7 +58,7 @@ const SVGIcon: React.FC<SVGIconProps> = ({
 }: SVGIconProps) => {
   const Icon: React.LazyExoticComponent<
     React.FC<React.SVGProps<SVGSVGElement>>
-  > = lazy(IconMap[icon]);
+  > = useMemo(() => lazy(IconMap[icon]), [icon]);
 
   return (
     <Suspense
