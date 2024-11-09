@@ -4,7 +4,7 @@ import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 
 export const ChatNoticeInfoWrapperVariants = cva(
-  "gap-3 flex flex-col px-4 py-4 w-full rounded-[18px] border neon-light ",
+  "gap-3 flex flex-col px-4 py-4 w-full rounded-[18px] border neon-light",
   {
     variants: {
       intent: {
