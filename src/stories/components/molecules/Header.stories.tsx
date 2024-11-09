@@ -12,7 +12,7 @@ const meta = {
   argTypes: {
     intent: {
       description: "Header 유형",
-      control: "multi-select",
+      control: "select",
       options: ["main", "label", "labelWithIcon"],
     },
     title: { description: "Header Title" },
@@ -23,9 +23,6 @@ const meta = {
       <div
         style={{
           width: "320px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
         }}
       >
         <Story />

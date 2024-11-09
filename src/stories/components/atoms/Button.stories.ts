@@ -12,7 +12,7 @@ const meta = {
   argTypes: {
     intent: {
       description: "버튼유형",
-      control: "multi-select",
+      control: "select",
       options: [
         "greenFill",
         "greenWeak",
@@ -26,7 +26,7 @@ const meta = {
     },
     size: {
       description: "버튼 사이즈",
-      control: "multi-select",
+      control: "select",
       options: ["xl", "lg", "md", "sm"],
     },
   },

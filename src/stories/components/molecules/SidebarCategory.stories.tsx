@@ -30,7 +30,7 @@ const meta = {
   argTypes: {
     icon: {
       description: "아이콘 종류",
-      control: "multi-select",
+      control: "select",
       options: Object.keys(IconMap),
     },
     label: { description: "카테고리 이름" },

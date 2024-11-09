@@ -13,7 +13,7 @@ const meta = {
     isMine: { description: "내가 보낸 메시지인지 여부", control: "boolean" },
     type: {
       description: "메시지 박스 타입",
-      control: "multi-select",
+      control: "select",
       options: ["chat", "notice"],
     },
     children: { description: "메시지 내용" },
