@@ -18,6 +18,20 @@ const meta = {
     title: { description: "Header Title" },
   },
   args: {},
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: "320px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Header>;
 
 export default meta;

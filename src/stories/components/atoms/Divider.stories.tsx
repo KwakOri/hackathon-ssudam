@@ -15,7 +15,14 @@ const meta = {
   args: {},
   decorators: [
     (Story) => (
-      <div style={{ width: "320px" }}>
+      <div
+        style={{
+          width: "320px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Story />
       </div>
     ),
