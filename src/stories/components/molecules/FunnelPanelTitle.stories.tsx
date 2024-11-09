@@ -15,6 +15,13 @@ const meta = {
     title: { description: "Funnel Title" },
   },
   args: {},
+  decorators: [
+    (Story) => (
+      <div style={{ width: "320px" }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof FunnelPanelTitle>;
 
 export default meta;

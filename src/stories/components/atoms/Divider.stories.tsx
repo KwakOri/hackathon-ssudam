@@ -13,6 +13,20 @@ const meta = {
     intent: { description: "Divider의 유형" },
   },
   args: {},
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: "320px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Divider>;
 
 export default meta;

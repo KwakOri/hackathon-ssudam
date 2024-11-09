@@ -15,6 +15,13 @@ const meta = {
     profileMessage: { description: "사용자 상태 메세지" },
   },
   args: {},
+  decorators: [
+    (Story) => (
+      <div style={{ width: "320px" }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof SidebarHeader>;
 
 export default meta;

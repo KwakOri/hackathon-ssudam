@@ -54,6 +54,7 @@ interface AvatarProps extends VariantProps<typeof AvatarVariants> {
   avatar: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Avatar = ({ shape, size, avatar }: AvatarProps) => {
   return (
     <div className={cn(AvatarVariants({ shape, size }))}>

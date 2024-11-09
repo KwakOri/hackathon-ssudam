@@ -46,3 +46,5 @@ const Paragraph = ({
 };
 
 export default Paragraph;
+
+<Paragraph></Paragraph>

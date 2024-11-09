@@ -12,12 +12,12 @@ const meta = {
   argTypes: {
     size: {
       description: "Avatar의 size",
-      control: "multi-select",
+      control: "select",
       options: ["xl", "lg", "md", "sm", "xs"],
     },
     shape: {
       description: "Avatar의 shape",
-      control: "multi-select",
+      control: "select",
       options: ["square", "circle"],
     },
   },

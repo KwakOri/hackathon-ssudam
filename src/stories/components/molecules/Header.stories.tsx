@@ -12,12 +12,23 @@ const meta = {
   argTypes: {
     intent: {
       description: "Header 유형",
-      control: "multi-select",
+      control: "select",
       options: ["main", "label", "labelWithIcon"],
     },
     title: { description: "Header Title" },
   },
   args: {},
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          width: "320px",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof Header>;
 
 export default meta;

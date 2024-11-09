@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { PluginAPI } from "tailwindcss/types/config";
 import { colors } from "./src/colors/colors";
 
 const config: Config = {
@@ -103,11 +104,68 @@ const config: Config = {
           strong: "rgba(10, 10, 10, 0.84)",
         },
       },
-
+      fontSize: {
+        title1: ["28px", { lineHeight: "135%" }],
+        title2: ["24px", { lineHeight: "140%" }],
+        heading1: ["20px", { lineHeight: "140%" }],
+        heading2: ["18px", { lineHeight: "140%" }],
+        body1: ["16px", { lineHeight: "160%" }],
+        body2: ["14px", { lineHeight: "160%" }],
+        label: ["15px", { lineHeight: "150%" }],
+        caption1: ["12px", { lineHeight: "130%" }],
+        caption2: ["10px", { lineHeight: "130%" }],
+      },
       background: "var(--background)",
       foreground: "var(--foreground)",
     },
   },
-  plugins: [],
+  plugins: [
+    ({ addUtilities }: PluginAPI) => {
+      addUtilities({
+        ".drop-shadow-normal": {
+          filter:
+            "drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.12)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.08)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.08))",
+        },
+        ".drop-shadow-emphasize": {
+          filter:
+            "drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.12)) drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.08)) drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.08))",
+        },
+        ".drop-shadow-strong": {
+          filter:
+            "drop-shadow(0px 6px 12px rgba(0, 0, 0, 0.12)) drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.08)) drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.08))",
+        },
+        ".drop-shadow-heavy": {
+          filter:
+            "drop-shadow(0px 16px 20px rgba(0, 0, 0, 0.12)) drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.08)) drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.08))",
+        },
+        ".neon-light": {
+          filter:
+            "drop-shadow(0px 0px 6px rgba(217, 221, 232, 1)) drop-shadow(0px 0px 4px rgba(239, 241, 245, 1))",
+        },
+        ".neon-weak": {
+          filter:
+            "drop-shadow(0px 0px 40px rgba(217, 221, 232, 0.1)) drop-shadow(0px 0px 4px rgba(217, 221, 232, 0.5)) drop-shadow(0px 0px 6px rgba(217, 221, 232, 0.3))",
+        },
+        ".neon-normal": {
+          filter:
+            "drop-shadow(0px 0px 20px rgba(217, 221, 232, 0.1)) drop-shadow(0px 0px 12px rgba(217, 221, 232, 0.3)) drop-shadow(0px 0px 8px rgba(217, 221, 232, 0.5))",
+        },
+        ".neon-strong": {
+          filter:
+            "drop-shadow(0px 0px 4px rgba(217, 221, 232, 1)) drop-shadow(0px 0px 120px rgba(217, 221, 232, 1)) drop-shadow(0px 0px 80px rgba(217, 221, 232, 1)) drop-shadow(0px 0px 40px rgba(217, 221, 232, 1))",
+        },
+        ".neon-red": {
+          filter:
+            "drop-shadow(0px 0px 30px rgba(252, 115, 129, 0.1)) drop-shadow(0px 0px 4.5px rgba(252, 115, 129, 0.3)) drop-shadow(0px 0px 3px rgba(252, 115, 129, 0.5))",
+        },
+        ".text-balance": {
+          "text-wrap": "balance",
+        },
+        ".caret-green": {
+          "caret-color": "#3e746d",
+        },
+      });
+    },
+  ],
 };
 export default config;
