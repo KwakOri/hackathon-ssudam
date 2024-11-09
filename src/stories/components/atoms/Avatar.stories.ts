@@ -29,6 +29,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    avatar: "https://picsum.photos/200/300",
     shape: "circle",
     size: "md",
   },
