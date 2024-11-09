@@ -9,17 +9,17 @@ const ButtonVariants = cva("", {
       greenWeak: "text-primary-heavy bg-primary-light ",
       dark: "text-static-white bg-label-normal",
       light:
-        "text-label-neutral bg-background-normal outline outline-{1px} outline-line-normal",
+        "text-label-neutral bg-background-normal border border-line-normal",
       weak: "text-static-white bg-line-normal",
       white: "text-primary-heavy bg-background-normal",
       redFill: "text-static-white bg-accent-red-normal",
       redWeak: "text-accent-red-strong bg-accent-red-light",
     },
     size: {
-      xl: "text-heading2 font-semibold rounded-[16px] px-[33px] py-[15px]",
-      lg: "text-body1 font-semibold rounded-[14px] px-[25px] py-[11px]",
-      md: "text-label font-semibold rounded-[10px] px-[19px] py-[8px]",
-      sm: "text-caption1 font-semibold rounded-[8px] px-[15px] py-[6px]",
+      xl: "text-[18px] leading-[140%] font-semibold rounded-[16px] px-[33px] py-[15px]",
+      lg: "text-[16px] leading-[160%] font-semibold rounded-[14px] px-[25px] py-[11px]",
+      md: "text-[15px] leading-[150%] font-semibold rounded-[10px] px-[19px] py-[8px]",
+      sm: "text-[12px] leading-[130%] font-semibold rounded-[8px] px-[15px] py-[6px]",
     },
   },
   defaultVariants: {
