@@ -56,7 +56,10 @@ const CheckInput = ({
           <SVGIcon
             icon={"Check"}
             size={size}
-            className={`fill-static-white ${!checked && "hidden"}`}
+            bold
+            className={`fill-static-white stroke-static-white ${
+              !checked && "hidden"
+            }`}
           />
         )}
         {type === "radio" && (
@@ -74,7 +77,6 @@ const CheckInput = ({
         checked={checked}
         onChange={({ target: { checked } }) => {
           onChange(checked);
-          console.log(checked);
         }}
       />
     </label>
