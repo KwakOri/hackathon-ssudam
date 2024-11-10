@@ -56,7 +56,6 @@ const CheckInput = ({
           <SVGIcon
             icon={"Check"}
             size={size}
-            bold
             className={`fill-static-white stroke-static-white ${
               !checked && "hidden"
             }`}

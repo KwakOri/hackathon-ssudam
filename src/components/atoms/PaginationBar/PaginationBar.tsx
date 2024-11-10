@@ -9,7 +9,7 @@ const PaginationBar = ({ steps, currentStep }: PaginationBarProps) => {
     <div className="w-[343px] h-[6px] rounded-full bg-fill-normal">
       <div
         style={{ width: `${step * 100}%` }}
-        className="h-full bg-primary-normal rounded-full"
+        className="h-full bg-primary-normal rounded-full transition-all duration-300"
       ></div>
     </div>
   );
