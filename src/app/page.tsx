@@ -12,7 +12,5 @@ export default function Home() {
     setIsRadioChecked(checked);
   };
 
-  return (
-    
-  );
+  return <></>;
 }
