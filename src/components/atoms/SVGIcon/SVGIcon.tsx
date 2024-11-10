@@ -68,7 +68,7 @@ const SVGIcon: React.FC<SVGIconProps> = ({
             width: IconSizes[size] + "px",
             height: IconSizes[size] + "px",
           }}
-          className={`bg-line-normal rounded-md`}
+          className={`bg-transparent rounded-md`}
         ></div>
       }
     >
