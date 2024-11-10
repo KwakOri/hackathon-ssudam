@@ -1,6 +1,5 @@
 "use client";
 
-import CheckInput from "@/components/molecules/CheckInput";
 import { useState } from "react";
 
 export default function Home() {
@@ -14,25 +13,6 @@ export default function Home() {
   };
 
   return (
-    <main className=" w-screen h-screen bg-line-normal">
-      <div>
-        <CheckInput
-          type="checkbox"
-          checked={isCheckboxChecked}
-          onChange={onCheckboxChange}
-          size="md"
-          disabled={false}
-        />
-      </div>
-      <div>
-        <CheckInput
-          type="radio"
-          checked={isRadioChecked}
-          onChange={onRadioChange}
-          size="md"
-          disabled={false}
-        />
-      </div>
-    </main>
+    
   );
 }
