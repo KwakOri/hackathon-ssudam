@@ -1,16 +1,17 @@
+import Border from "@/components/atoms/Border";
 import Button from "@/components/atoms/Button";
 import ChatNoticeInfo from "@/components/molecules/ChatNoticeInfo";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 
 export const ChatNoticeInfoWrapperVariants = cva(
-  "gap-3 flex flex-col px-4 py-4 w-full rounded-[18px] border neon-light",
+  " relative gap-3 flex flex-col px-4 py-4 w-full rounded-[18px] neon-light",
   {
     variants: {
       intent: {
-        redFill: "bg-accent-red-light border-accent-red-light",
-        greenFill: "bg-primary-light border-primary-light",
-        dark: "bg-background-normal border-line-normal",
+        redFill: "bg-accent-red-bg",
+        greenFill: "bg-primary-bg ",
+        dark: "bg-background-normal ",
       },
     },
     defaultVariants: {
@@ -28,6 +29,7 @@ interface ChatNoticeInfoProps
 const ChatNoticeBox = ({ title, content, intent }: ChatNoticeInfoProps) => {
   return (
     <article className={cn(ChatNoticeInfoWrapperVariants({ intent }))}>
+      <Border intent={intent} className={"rounded-[18px]"} />
       <ChatNoticeInfo title={title} content={content} intent={intent} />
       <Button intent={intent} size={"md"} className="w-full">
         Label

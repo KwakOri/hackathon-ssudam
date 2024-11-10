@@ -18,6 +18,7 @@ const config: Config = {
           heavy: colors.green[35],
           light: "rgba(105, 175, 165, 0.16)",
           pale: "rgba(105, 175, 165, 0.12)",
+          bg: "#E7F2F1",
         },
         label: {
           normal: "#585960",
@@ -55,6 +56,7 @@ const config: Config = {
             heavy: "#D41120",
             light: "rgba(242, 90, 101, 0.16)",
             pale: "rgba(242, 90, 101, 0.12)",
+            bg: "#FDE5E6",
           },
           orange: {
             normal: "#FFA902",
