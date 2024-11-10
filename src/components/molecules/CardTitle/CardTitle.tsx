@@ -19,7 +19,7 @@ interface CardTitleProps extends VariantProps<typeof CardTitleVariants> {
 
 const CardTitle = ({ title, isChecked }: CardTitleProps) => {
   return (
-    <div className="flex w-[240px] flex-col gap-1">
+    <div className="flex flex-col gap-1">
       <div className="flex justify-between items-center">
         <Paragraph
           fontSize={"caption1"}
