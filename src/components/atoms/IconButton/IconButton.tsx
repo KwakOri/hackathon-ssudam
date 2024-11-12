@@ -1,24 +1,54 @@
+import SVGIcon from "@/components/atoms/SVGIcon";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import SVGIcon from "@/components/atoms/SVGIcon";
 
-const IconButtonVariants = cva("rounded-full", {
+const IconButtonVariants = cva(
+  "rounded-full flex justify-center items-center",
+  {
+    variants: {
+      intent: {
+        fill: "bg-primary-heavy ",
+        white: "bg-background-normal box-border border-line-normal",
+        light: "bg-primary-light ",
+      },
+      size: {
+        sm: "w-6 h-6",
+        md: "w-8 h-8",
+        lg: "w-10 h-10",
+      },
+    },
+    compoundVariants: [
+      {
+        intent: "white",
+        size: "sm",
+        className: "border",
+      },
+      {
+        intent: "white",
+        size: "md",
+        className: "border-[1.33px]",
+      },
+      {
+        intent: "white",
+        size: "lg",
+        className: "border-[1.66px]",
+      },
+    ],
+    defaultVariants: {
+      intent: "fill",
+      size: "md",
+    },
+  }
+);
+
+const iconVariants = cva("", {
   variants: {
     intent: {
-      fill: "bg-primary-heavy ",
-      white: "bg-background-normal ",
-      light: "bg-primary-light ",
+      fill: "fill-static-white",
+      white: "fill-primary-heavy",
+      light: "fill-primary-heavy",
     },
-    size: {
-      sm: "p-[10px]",
-      md: "p-[13.33px]",
-      lg: "p-[16.67px]",
-    },
-  },
-  defaultVariants: {
-    intent: "fill",
-    size: "sm",
   },
 });
 
@@ -32,8 +62,8 @@ interface IconButtonProps
 
 const IconButton = ({
   children,
-  intent = "fill",
-  size = "sm",
+  intent,
+  size,
   className,
   ...props
 }: PropsWithChildren<IconButtonProps>) => {
@@ -45,7 +75,7 @@ const IconButton = ({
       <SVGIcon
         icon={"ChevronRight"}
         size={size}
-        color={intent === "fill" ? "white" : "primary"}
+        className={cn(iconVariants({ intent }))}
       />
     </button>
   );

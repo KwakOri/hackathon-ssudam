@@ -1,14 +1,13 @@
 "use client";
 
-import SVGIcon from "@/components/atoms/SVGIcon";
-import { IconMap, IconMapTypes } from "@/icons/icons";
+import IconButton from "@/components/atoms/IconButton";
 
 export default function Home() {
   return (
-    <main>
-      {Object.keys(IconMap).map((iconName) => (
-        <SVGIcon icon={iconName as IconMapTypes} key={iconName} />
-      ))}
+    <main className="bg-white">
+      <IconButton intent={"fill"} />
+      <IconButton intent={"light"} />
+      <IconButton intent={"white"} />
     </main>
   );
 }
