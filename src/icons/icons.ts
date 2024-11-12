@@ -37,6 +37,7 @@ export const IconMap = {
   User: () => import("/public/svgs/user.svg"),
   Voice: () => import("/public/svgs/voice.svg"),
   Warning: () => import("/public/svgs/warning.svg"),
+  Time: () => import("/public/svgs/time.svg"),
 };
 
 export type IconMapTypes = keyof typeof IconMap;
