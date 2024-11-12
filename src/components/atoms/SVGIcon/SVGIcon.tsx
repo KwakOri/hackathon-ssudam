@@ -1,58 +1,36 @@
-import { IconMap, IconMapTypes, IconSizes } from "@/icons/icons";
+import {
+  getVariantsWithCommonClass,
+  IconMap,
+  IconMapTypes,
+  IconSizes,
+} from "@/icons/icons";
+import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { lazy, Suspense, useMemo } from "react";
 
-const SVGIconVariants = cva("", {
+const IconVariants = getVariantsWithCommonClass(
+  Object.keys(IconMap) as IconMapTypes[],
+  "fill-label-neutral"
+);
+
+const SVGIconVariants = cva("fill-label-neutral", {
   variants: {
-    color: {
-      gray: "fill-label-neutral",
-      white: "fill-common-100",
-      black: "fill-label-strong",
-      primary: "fill-primary-heavy",
+    icon: {
+      ...IconVariants,
+      StarLine: "stroke-label-alternative fill-none",
+      StarFill: "fill-primary-strong",
+      FilterFill: "fill-primary-strong",
     },
-    bold: {
-      true: "",
-      false: "",
-    },
-  },
-  compoundVariants: [
-    {
-      color: "gray",
-      bold: true,
-      class: "stroke-label-neutral",
-    },
-    {
-      color: "white",
-      bold: true,
-      class: "stroke-common-100",
-    },
-    {
-      color: "black",
-      bold: true,
-      class: "stroke-label-strong",
-    },
-    {
-      color: "primary",
-      bold: true,
-      class: "stroke-primary-heavy",
-    },
-  ],
-  defaultVariants: {
-    color: "gray",
-    bold: false,
   },
 });
 
 interface SVGIconProps extends VariantProps<typeof SVGIconVariants> {
-  icon: IconMapTypes;
   size?: "lg" | "md" | "sm";
   className?: string;
 }
 
 const SVGIcon: React.FC<SVGIconProps> = ({
   icon,
-  bold = false,
-  color = "gray",
   size = "lg",
   className,
 }: SVGIconProps) => {
@@ -73,7 +51,7 @@ const SVGIcon: React.FC<SVGIconProps> = ({
       }
     >
       <Icon
-        className={SVGIconVariants({ color, bold, className })}
+        className={cn(SVGIconVariants({ icon, className }))}
         width={IconSizes[size]}
         height={IconSizes[size]}
       />
