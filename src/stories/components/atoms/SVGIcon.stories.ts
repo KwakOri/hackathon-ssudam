@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import SVGIcon from "@/components/atoms/SVGIcon";
+import { IconMap } from "@/icons/icons";
 
 const meta = {
   title: "Atoms/SVGIcon",
@@ -13,53 +14,8 @@ const meta = {
     icon: {
       description: "아이콘 유형",
       control: "select",
-      options: [
-        "ArrowDown",
-        "ArrowLeft",
-        "ArrowRight",
-        "ArrowUp",
-        "Book",
-        "Chat",
-        "Check",
-        "ChevronDown",
-        "ChevronLeft",
-        "ChevronRight",
-        "ChevronUp",
-        "Close",
-        "Doctor",
-        "Expand",
-        "Fail",
-        "FilterActiveFalse",
-        "FilterActiveTrue",
-        "Home",
-        "InIcon",
-        "Info",
-        "Location",
-        "Map",
-        "Meatball",
-        "Menu",
-        "Mic",
-        "Out",
-        "People",
-        "Play",
-        "Reset",
-        "Setting",
-        "Share",
-        "StarActiveFalse",
-        "StarActiveTrue",
-        "Success",
-        "Upload",
-        "User",
-        "Voice",
-        "Warning",
-      ],
+      options: Object.keys(IconMap),
     },
-    color: {
-      description: "아이콘의 색상",
-      control: "select",
-      options: ["gray", "white", "black"],
-    },
-    bold: { description: "아이콘의 두께", control: "boolean" },
     size: {
       description: "아이콘의 크기",
       control: "select",
@@ -77,8 +33,6 @@ export const Default: Story = {
   args: {
     icon: "Setting",
     size: "md",
-    bold: false,
-    color: "gray",
     className: "",
   },
 };

@@ -1,6 +1,8 @@
 import Paragraph from "@/components/atoms/Paragraph/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
 import { IconMapTypes } from "@/icons/icons";
+import { cn } from "@/utils/cn";
+import { cva } from "class-variance-authority";
 import { ButtonHTMLAttributes } from "react";
 
 interface SidebarCategoryProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,6 +12,15 @@ interface SidebarCategoryProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isDropDown?: boolean;
 }
 
+const SidebarCategoryIconVariants = cva("", {
+  variants: {
+    isActive: {
+      true: "text-primary-heavy",
+      false: "text-label-strong",
+    },
+  },
+});
+
 const SidebarCategory = ({
   icon,
   label,
@@ -17,7 +28,6 @@ const SidebarCategory = ({
   isDropDown = false,
   ...props
 }: SidebarCategoryProps) => {
-  const isIconStar = icon === "StarActiveFalse";
   return (
     <button
       {...props}
@@ -36,8 +46,7 @@ const SidebarCategory = ({
         <SVGIcon
           icon={icon}
           size={"md"}
-          color={isActive ? "primary" : "black"}
-          className={isIconStar ? "fill-none stroke-label-strong" : ""}
+          className={cn(SidebarCategoryIconVariants({ isActive }))}
         />
 
         <Paragraph

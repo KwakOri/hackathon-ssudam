@@ -1,16 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import SVGIcon from "@/components/atoms/SVGIcon";
+import { IconMap, IconMapTypes } from "@/icons/icons";
 
 export default function Home() {
-  const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
-  const onCheckboxChange = (checked: boolean) => {
-    setIsCheckboxChecked(checked);
-  };
-  const [isRadioChecked, setIsRadioChecked] = useState(false);
-  const onRadioChange = (checked: boolean) => {
-    setIsRadioChecked(checked);
-  };
-
-  return <></>;
+  return (
+    <main>
+      {Object.keys(IconMap).map((iconName) => (
+        <SVGIcon icon={iconName as IconMapTypes} key={iconName} />
+      ))}
+    </main>
+  );
 }
