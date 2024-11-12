@@ -22,11 +22,15 @@ const SVGIconVariants = cva("fill-label-neutral", {
       FilterFill: "fill-primary-strong",
     },
   },
+  defaultVariants: {
+    icon: "StarLine",
+  },
 });
 
 interface SVGIconProps extends VariantProps<typeof SVGIconVariants> {
   size?: "lg" | "md" | "sm";
   className?: string;
+  icon: IconMapTypes;
 }
 
 const SVGIcon: React.FC<SVGIconProps> = ({

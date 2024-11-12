@@ -27,7 +27,7 @@ const Sidebar = () => {
         <SidebarSectionTitle>내 정보</SidebarSectionTitle>
         <div className="flex flex-col">
           <SidebarCategory icon={"User"} label={"프로필"} />
-          <SidebarCategory icon={"StarActiveFalse"} label={"스크랩"} />
+          <SidebarCategory icon={"StarLine"} label={"스크랩"} />
           <SidebarCategory icon={"Setting"} label={"설정"} />
           <SidebarCategory icon={"InIcon"} label={"로그아웃"} />
         </div>
