@@ -24,6 +24,9 @@ const meta = {
     title: {
       description: "ChatModeBox Title",
     },
+    href: {
+      description: "ChatModeBox Link",
+    },
   },
   args: {},
 } satisfies Meta<typeof ChatModeBox>;
@@ -38,5 +41,6 @@ export const Default: Story = {
     title: "들어줄게요",
     mode: "반말 모드",
     intent: "tertiary",
+    href: "XXXXXXXXXXXXXXXXXXXXX",
   },
 };
