@@ -61,6 +61,7 @@ interface IconButtonProps
 }
 
 const IconButton = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   children,
   intent,
   size,
