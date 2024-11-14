@@ -1,10 +1,10 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 
-import CardTitle from "@/components/molecules/CardTitle";
+import CardListTitle from "@/components/molecules/CardListTitle";
 
 const meta = {
-  title: "Molecules/CardTitle",
-  component: CardTitle,
+  title: "Molecules/CardListTitle",
+  component: CardListTitle,
   parameters: {
     layout: "centered",
   },
@@ -13,13 +13,17 @@ const meta = {
     isChecked: { description: "체크 여부", control: "boolean" },
   },
   args: {},
-} satisfies Meta<typeof CardTitle>;
+} satisfies Meta<typeof CardListTitle>;
+
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
     title: "Title",
+    year: "24",
+    month: "11",
+    day: "10",
     isChecked: false,
   },
 };
