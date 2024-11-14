@@ -31,7 +31,7 @@ const Header = ({
             <Paragraph>{title}</Paragraph>
           ) : (
             <div className="flex gap-2">
-              <Avatar size={"xs"} shape={"square"} />
+              <Avatar avatar={""} size={"xs"} shape={"square"} />
               <Paragraph>{title}</Paragraph>
             </div>
           )}

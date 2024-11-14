@@ -1,6 +1,7 @@
 import SVGIcon from "@/components/atoms/SVGIcon";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
+import { PropsWithChildren } from "react";
 
 const CheckInputLabelVariants = cva(
   "flex justify-center items-center overflow-hidden",
@@ -44,41 +45,45 @@ const CheckInput = ({
   onChange,
   size,
   type,
-}: CheckInputProps) => {
+  children,
+}: PropsWithChildren<CheckInputProps>) => {
   return (
-    <label>
-      <div
-        className={cn(
-          CheckInputLabelVariants({ disabled, checked, size, type })
-        )}
-      >
-        {type === "checkbox" && (
-          <SVGIcon
-            icon={"Check"}
-            size={size}
-            className={`fill-static-white stroke-static-white ${
-              !checked && "hidden"
-            }`}
-          />
-        )}
-        {type === "radio" && (
-          <div
-            className={`rounded-full bg-static-white ${!checked && "hidden"} ${
-              size === "md" ? "w-2 h-2" : "w-[7px] h-[7px]"
-            }`}
-          ></div>
-        )}
-      </div>
-      <input
-        className="hidden"
-        type={"checkbox"}
-        disabled={disabled}
-        checked={checked}
-        onChange={({ target: { checked } }) => {
-          onChange(checked);
-        }}
-      />
-    </label>
+    <div className="flex gap-2 items-center">
+      <label>
+        <div
+          className={cn(
+            CheckInputLabelVariants({ disabled, checked, size, type })
+          )}
+        >
+          {type === "checkbox" && (
+            <SVGIcon
+              icon={"Check"}
+              size={size}
+              className={`fill-static-white stroke-static-white ${
+                !checked && "hidden"
+              }`}
+            />
+          )}
+          {type === "radio" && (
+            <div
+              className={`rounded-full bg-static-white ${
+                !checked && "hidden"
+              } ${size === "md" ? "w-2 h-2" : "w-[7px] h-[7px]"}`}
+            ></div>
+          )}
+        </div>
+        <input
+          className="hidden"
+          type={"checkbox"}
+          disabled={disabled}
+          checked={checked}
+          onChange={({ target: { checked } }) => {
+            onChange(checked);
+          }}
+        />
+      </label>
+      {children}
+    </div>
   );
 };
 

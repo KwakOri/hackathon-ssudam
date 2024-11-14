@@ -1,20 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import IconButton from "@/components/atoms/IconButton";
+import TextButton from "@/components/molecules/TextButton";
 
 const meta = {
-  title: "Atoms/IconButton",
-  component: IconButton,
+  title: "Molecules/TextButton",
+  component: TextButton,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
   argTypes: {
-    intent: {
-      description: "버튼유형",
-      control: "select",
-      options: ["fill", "white", "light"],
-    },
+    children: { description: "버톤 내용" },
     size: {
       description: "버튼 사이즈",
       control: "select",
@@ -22,14 +18,14 @@ const meta = {
     },
   },
   args: {},
-} satisfies Meta<typeof IconButton>;
+} satisfies Meta<typeof TextButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    intent: "fill",
+    children: "버튼",
     size: "md",
   },
 };

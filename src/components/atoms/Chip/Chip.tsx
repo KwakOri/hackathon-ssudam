@@ -1,7 +1,7 @@
+import SVGIcon from "@/components/atoms/SVGIcon";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
-import SVGIcon from "@/components/atoms/SVGIcon";
 
 const ChipVariants = cva("rounded-full ", {
   variants: {
@@ -39,11 +39,7 @@ const Chip = ({
       {...props}
     >
       {isIcon ? (
-        <SVGIcon
-          icon={isActive ? "FilterActiveTrue" : "FilterActiveFalse"}
-          size={"sm"}
-          color={isActive ? "primary" : "gray"}
-        />
+        <SVGIcon icon={isActive ? "FilterFill" : "FilterLine"} size={"sm"} />
       ) : (
         children
       )}

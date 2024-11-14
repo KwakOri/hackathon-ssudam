@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";
 import { useState } from "storybook/internal/preview-api";
 
@@ -16,6 +17,7 @@ const meta = {
     size: { description: "체크박스 크기" },
     disabled: { description: "체크박스 비활성화 여부" },
     type: { description: "체크박스 타입" },
+    children: { description: "체크박스 내용" },
   },
   args: {},
 } satisfies Meta<typeof CheckInput>;
@@ -30,6 +32,7 @@ export const Default: Story = {
     onChange: () => {},
     size: "md",
     disabled: false,
+    children: <Paragraph className={"text-label-strong"}>체크박스</Paragraph>,
   },
 };
 
@@ -40,6 +43,7 @@ export const Checkbox: Story = {
     onChange: () => {},
     size: "md",
     disabled: false,
+    children: <Paragraph className={"text-label-strong"}>체크박스</Paragraph>,
   },
   render: function Render(args) {
     const [isChecked, setIsChecked] = useState(false);
@@ -53,7 +57,9 @@ export const Checkbox: Story = {
         onChange={onChange}
         size="md"
         disabled={false}
-      />
+      >
+        {args.children}
+      </CheckInput>
     );
   },
 };
@@ -64,6 +70,9 @@ export const Radio: Story = {
     onChange: () => {},
     size: "md",
     disabled: false,
+    children: (
+      <Paragraph className={"text-label-strong"}>라디오 버튼</Paragraph>
+    ),
   },
   render: function Render(args) {
     const [isChecked, setIsChecked] = useState(false);
@@ -77,7 +86,9 @@ export const Radio: Story = {
         onChange={onChange}
         size="md"
         disabled={false}
-      />
+      >
+        {args.children}
+      </CheckInput>
     );
   },
 };
