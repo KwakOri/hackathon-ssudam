@@ -18,6 +18,23 @@ const meta = {
   args: {
     clickCursor: fn(),
   },
+} satisfies Meta<typeof PaginationCarousel>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    activeIndex: 0,
+    length: 5,
+  },
+};
+
+export const Interaction: Story = {
+  args: {
+    activeIndex: 0,
+    length: 5,
+  },
   render: function Render(args) {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const clickCursor = (i: number) => {
@@ -30,15 +47,5 @@ const meta = {
         activeIndex={activeIndex}
       />
     );
-  },
-} satisfies Meta<typeof PaginationCarousel>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {
-  args: {
-    activeIndex: 0,
-    length: 5,
   },
 };

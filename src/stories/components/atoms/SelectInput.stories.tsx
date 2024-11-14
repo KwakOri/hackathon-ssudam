@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import SelectInput from "@/components/atoms/SelectInput";
+import { useState } from "storybook/internal/preview-api";
 
 const meta = {
   title: "Atoms/SelectInput",
@@ -21,9 +22,6 @@ const meta = {
       </div>
     ),
   ],
-  render: (args) => {
-    return <SelectInput {...args} />;
-  },
 } satisfies Meta<typeof SelectInput>;
 
 export default meta;
@@ -33,5 +31,22 @@ export const Default: Story = {
   args: {
     isSelected: true,
     children: "Option1",
+  },
+};
+
+export const Interaction: Story = {
+  args: {
+    isSelected: false,
+    children: "Option2",
+  },
+  render: (args) => {
+    const [isSelected, setIsSelected] = useState<boolean>(false);
+    return (
+      <SelectInput
+        {...args}
+        onClick={() => setIsSelected((prev) => !prev)}
+        isSelected={isSelected}
+      />
+    );
   },
 };

@@ -18,6 +18,21 @@ const meta = {
   args: {
     clickCursor: fn(),
   },
+} satisfies Meta<typeof PaginationSource>;
+
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+export const Default: Story = {
+  args: { currentIndex: 1, activeIndex: 2 },
+};
+
+export const Interaction: Story = {
+  args: {
+    currentIndex: 1,
+    activeIndex: 2,
+  },
   render: function Render(args) {
     const [isActive, setIsActive] = useState<boolean>(false);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -33,12 +48,4 @@ const meta = {
       />
     );
   },
-} satisfies Meta<typeof PaginationSource>;
-
-export default meta;
-type Story = StoryObj<typeof meta>;
-
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Default: Story = {
-  args: { currentIndex: 1, activeIndex: 2 },
 };

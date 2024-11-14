@@ -4,22 +4,24 @@ import SVGIcon from "@/components/atoms/SVGIcon";
 
 interface ITextfieldProps {
   label: string;
-  caption: string;
+  caption?: string;
   placeholder: string;
-  errorMessage?: string;
+  helperMessage?: string;
   validationOption?: string;
   buttonLabel?: string;
   buttonOnClick?: () => void;
+  IsInputDelButton?: boolean;
 }
 
 const Textfield = ({
   label,
-  caption,
+  caption = "",
   placeholder,
-  errorMessage,
+  helperMessage,
   validationOption,
   buttonOnClick,
   buttonLabel = "",
+  IsInputDelButton = false,
 }: ITextfieldProps) => {
   return (
     <article className={"flex flex-col gap-2 w-full"}>
@@ -40,42 +42,42 @@ const Textfield = ({
         </Paragraph>
       </div>
       <div className="flex gap-2">
-        <div className="flex w-full justify-between items-center p-3 rounded-[13px] border border-line-normal bg-fill-pale">
+        <div className="grow flex justify-between items-center p-3 rounded-[13px] border border-line-normal bg-fill-pale">
           <input
             placeholder={" " + placeholder}
             type="text"
             className={
-              "text-label-strong placeholder-label-alternative bg-transparent outline-none"
+              " text-label-strong placeholder-label-alternative bg-transparent outline-none"
             }
           />
-          <button className={"flex items-center gap-2"}>
-            <Paragraph
-              fontSize={"caption1"}
-              fontWeight={"medium"}
-              className={"text-label-alternative"}
-            >
-              Option
-            </Paragraph>
-            <SVGIcon
-              icon={"Fail"}
-              size={"sm"}
-              className={"fill-label-neutral"}
-            />
-          </button>
+          {IsInputDelButton && (
+            <button className={"flex items-center gap-2"}>
+              <SVGIcon
+                icon={"Fail"}
+                size={"sm"}
+                className={"fill-label-neutral"}
+              />
+            </button>
+          )}
         </div>
         {buttonLabel && (
-          <Button intent={"light"} size={"lg"} onClick={buttonOnClick}>
+          <Button
+            className={"p-0 w-[85px]"}
+            intent={"light"}
+            size={"lg"}
+            onClick={buttonOnClick}
+          >
             {buttonLabel}
           </Button>
         )}
       </div>
-      {validationOption ? (
+      {helperMessage ? (
         <Paragraph
           fontSize={"caption1"}
           fontWeight={"medium"}
           className={"text-label-alternative"}
         >
-          {errorMessage}
+          {helperMessage}
         </Paragraph>
       ) : (
         <Paragraph fontSize={"caption1"} fontWeight={"medium"}></Paragraph>
