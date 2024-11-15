@@ -57,11 +57,7 @@ const CardListTitle = ({
           {title}
         </Paragraph>
         <button>
-          <SVGIcon
-            icon={"StarActiveFalse"}
-            size={"md"}
-            className={cn(CardListTitleVariants({ isChecked }))}
-          />
+          <SVGIcon icon={isChecked ? "StarFill" : "StarLine"} size={"md"} />
         </button>
       </div>
     </div>
