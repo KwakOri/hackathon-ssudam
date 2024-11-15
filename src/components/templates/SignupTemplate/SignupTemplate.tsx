@@ -4,7 +4,7 @@ import { PropsWithChildren } from "react";
 interface SignupTemplateProps {
   title: string;
   isMain?: boolean;
-  onClick: () => void;
+  onClick: any;
 }
 
 const SignupTemplate = ({
@@ -14,13 +14,15 @@ const SignupTemplate = ({
   onClick,
 }: PropsWithChildren<SignupTemplateProps>) => {
   return (
-    <section className={"relative w-[375px] h-[800px]"}>
+    <section className={"flex flex-col relative w-full h-full"}>
       <SignUpHeader title={title} isMain={isMain} />
-      <div className={"flex flex-col gap-10 p-4"}>{children}</div>
+      <div className={"grow w-full flex flex-col justify-between p-4"}>
+        <div className={"flex flex-col gap-10 p-4"}>{children}</div>
 
-      <Button onClick={onClick} className="absolute bottom-0 w-[343px] m-4">
-        다음
-      </Button>
+        <Button onClick={onClick} className="">
+          다음
+        </Button>
+      </div>
     </section>
   );
 };

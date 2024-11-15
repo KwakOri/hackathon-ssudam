@@ -13,7 +13,7 @@ const meta = {
     intent: {
       description: "Header 유형",
       control: "select",
-      options: ["main", "label", "labelWithIcon"],
+      options: ["main", "label", "labelWithMenuIcon", "labelWithCloseIcon"],
     },
     title: { description: "Header Title" },
   },
@@ -46,9 +46,15 @@ export const Label: Story = {
     title: "CHAT",
   },
 };
-export const LabelWithIcon: Story = {
+export const LabelWithMenuIcon: Story = {
   args: {
-    intent: "labelWithIcon",
+    intent: "labelWithMenuIcon",
     title: "AI",
+  },
+};
+export const LabelWithCloseIcon: Story = {
+  args: {
+    intent: "labelWithCloseIcon",
+    title: "회원가입",
   },
 };

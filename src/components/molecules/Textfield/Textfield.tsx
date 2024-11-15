@@ -1,8 +1,10 @@
 import Button from "@/components/atoms/Button";
 import Paragraph from "@/components/atoms/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
+import TextInput from "@/components/atoms/TextInput";
+import { InputHTMLAttributes } from "react";
 
-interface ITextfieldProps {
+interface ITextfieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   caption?: string;
   placeholder: string;
@@ -22,6 +24,7 @@ const Textfield = ({
   buttonOnClick,
   buttonLabel = "",
   IsInputDelButton = false,
+  ...props
 }: ITextfieldProps) => {
   return (
     <article className={"flex flex-col gap-2 w-full"}>
@@ -43,13 +46,7 @@ const Textfield = ({
       </div>
       <div className="flex gap-2">
         <div className="grow flex justify-between items-center p-3 rounded-[13px] border border-line-normal bg-fill-pale">
-          <input
-            placeholder={" " + placeholder}
-            type="text"
-            className={
-              " text-label-strong placeholder-label-alternative bg-transparent outline-none"
-            }
-          />
+          <TextInput {...props} placeholder={" " + placeholder} />
           {IsInputDelButton && (
             <button className={"flex items-center gap-2"}>
               <SVGIcon

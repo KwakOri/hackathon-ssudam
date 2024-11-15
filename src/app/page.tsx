@@ -1,13 +1,11 @@
 "use client";
 
-import IconButton from "@/components/atoms/IconButton";
+import SignupPages from "@/components/pages/SignupPages";
 
 export default function Home() {
   return (
-    <main className="bg-white">
-      <IconButton intent={"fill"} />
-      <IconButton intent={"light"} />
-      <IconButton intent={"white"} />
+    <main className="w-[375px] h-[600px] bg-static-white">
+      <SignupPages />
     </main>
   );
 }

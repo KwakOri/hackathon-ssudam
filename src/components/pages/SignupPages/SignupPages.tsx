@@ -4,13 +4,46 @@ import CheckInput from "@/components/molecules/CheckInput";
 import Textfield from "@/components/molecules/Textfield";
 import SignupTemplate from "@/components/templates/SignupTemplate";
 import { useState } from "react";
-
-interface SignupPagesProps {
-  currentStep: "email" | "password" | "nickname" | "principles";
+interface SignupPagesProps {}
+interface AuthInfoTypes {
+  email: string;
+  code: string;
+  isAuthenticated: boolean;
+  password: string;
+  nickname: string;
 }
 
-const SignupPages = ({ currentStep }: SignupPagesProps) => {
-  const [_, setCurrentStep] = useState<string>("email");
+const SignupPages = ({}: SignupPagesProps) => {
+  const [currentStep, setCurrentStep] = useState<string>("nickname");
+  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [authInfo, setAuthInfo] = useState<AuthInfoTypes>({
+    email: "",
+    isAuthenticated: false,
+    code: "",
+    password: "",
+    nickname: "",
+  });
+
+  console.log(authInfo);
+
+  const sendAuthMail = async () => {
+    const res = await fetch(
+      "https://b6f2-220-88-76-114.ngrok-free.app/auth/auth-code",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "true",
+          "ngrok-skip-browser-warning": "true",
+        },
+        body: JSON.stringify({ email: authInfo.email }),
+      }
+    );
+    const message = await res.json();
+    console.log(message);
+    setIsAuth(true);
+  };
+
   // const SignupSteps = {
   //   email: {},
   //   password: {},
@@ -18,9 +51,29 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
   // };
 
   return (
-    <>
+    <div className="w-full h-full">
       {currentStep === "email" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={async () => {
+            const res = await fetch(
+              `https://b6f2-220-88-76-114.ngrok-free.app/auth/verify-email?email=${authInfo.email}&verifyCode=${authInfo.code}`,
+              {
+                headers: {
+                  "Access-Control-Allow-Credentials": "true",
+                  "ngrok-skip-browser-warning": "true",
+                },
+              }
+            );
+            const data = await res.json();
+            console.log(data);
+            if (data.status !== 200) {
+              alert("인증코드가 일치하지 않습니다.");
+              return;
+            }
+            setCurrentStep("password");
+          }}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               이메일 인증이
@@ -31,14 +84,22 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
           </div>
           <div>
             <Textfield
-              buttonLabel="인증"
-              buttonOnClick={() => {}}
+              buttonLabel={isAuth ? "재발송" : "인증"}
+              buttonOnClick={sendAuthMail}
               label="이메일"
               placeholder="이메일을 입력해주세요."
               validationOption="ValidationOption"
+              value={authInfo.email}
+              onChange={(e) => {
+                setAuthInfo((prev) => ({ ...prev, email: e.target.value }));
+              }}
             />
             <div className="grow flex justify-between items-center p-3 rounded-[13px] border border-line-normal bg-fill-pale">
               <input
+                value={authInfo.code}
+                onChange={(e) => {
+                  setAuthInfo((prev) => ({ ...prev, code: e.target.value }));
+                }}
                 placeholder={"인증번호를 입력해주세요"}
                 type="text"
                 className={
@@ -50,7 +111,10 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
         </SignupTemplate>
       )}
       {currentStep === "password" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={() => setCurrentStep("nickname")}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               비밀번호를
@@ -68,7 +132,28 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
         </SignupTemplate>
       )}
       {currentStep === "nickname" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={async () => {
+            if (authInfo.nickname === "") {
+              alert("이름을 입력해주세요.");
+              return;
+            }
+            const res = await fetch(
+              `https://b6f2-220-88-76-114.ngrok-free.app/auth/verify-nickname?nickname=${authInfo.nickname}`,
+              {
+                headers: {
+                  "Access-Control-Allow-Credentials": "true",
+                  "ngrok-skip-browser-warning": "true",
+                },
+              }
+            );
+            const data = await res.json();
+            console.log(data);
+
+            // setCurrentStep("principles");
+          }}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               이름을
@@ -82,6 +167,10 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
             label="이름"
             placeholder="이름을 입력해주세요."
             helperMessage="쓰담쓰담 내에서 사용할 이름을 자유롭게 입력해주세요."
+            value={authInfo.nickname}
+            onChange={(e) => {
+              setAuthInfo((prev) => ({ ...prev, nickname: e.target.value }));
+            }}
           />
         </SignupTemplate>
       )}
@@ -182,7 +271,7 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
           </article>
         </SignupTemplate>
       )}
-    </>
+    </div>
   );
 };
 
