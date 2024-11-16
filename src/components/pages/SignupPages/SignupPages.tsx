@@ -3,7 +3,7 @@ import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";
 import Textfield from "@/components/molecules/Textfield";
 import SignupTemplate from "@/components/templates/SignupTemplate";
-import api from "@/services/services";
+import api from "@/services/service";
 import { ChangeEventHandler, useState } from "react";
 
 type StepTypes = "email" | "password" | "nickname" | "principles" | "done";
@@ -11,6 +11,7 @@ interface UserInfoTypes {
   email: string;
   password: string;
   nickname: string;
+  authCode: string;
   isEmailValid: boolean;
   isPasswordValid: boolean;
   isNicknameValid: boolean;
@@ -22,6 +23,7 @@ const SignupPages = () => {
     email: "",
     password: "",
     nickname: "",
+    authCode: "",
     isEmailValid: false,
     isPasswordValid: false,
     isNicknameValid: false,
@@ -35,7 +37,7 @@ const SignupPages = () => {
   };
 
   return (
-    <>
+    <div className="w-full h-full">
       {currentStep === "email" && (
         <SignupTemplate
           title={"회원가입"}
@@ -66,6 +68,13 @@ const SignupPages = () => {
             />
             <div className="grow flex justify-between items-center p-3 rounded-[13px] border border-line-normal bg-fill-pale">
               <input
+                value={userInfo.authCode}
+                onChange={(e) => {
+                  setUserInfo((prev) => ({
+                    ...prev,
+                    authCode: e.target.value,
+                  }));
+                }}
                 placeholder={"인증번호를 입력해주세요"}
                 type="text"
                 className={
@@ -115,6 +124,10 @@ const SignupPages = () => {
             label="이름"
             placeholder="이름을 입력해주세요."
             helperMessage="쓰담쓰담 내에서 사용할 이름을 자유롭게 입력해주세요."
+            value={userInfo.nickname}
+            onChange={(e) => {
+              setUserInfo((prev) => ({ ...prev, nickname: e.target.value }));
+            }}
           />
         </SignupTemplate>
       )}
@@ -218,7 +231,7 @@ const SignupPages = () => {
           </article>
         </SignupTemplate>
       )}
-    </>
+    </div>
   );
 };
 

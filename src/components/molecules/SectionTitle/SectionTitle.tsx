@@ -9,7 +9,11 @@ const SectionTitle = ({ children }: PropsWithChildren) => {
         {children}
       </Paragraph>
       <div className="flex gap-1 items-center">
-        <Paragraph fontSize={"label"} fontWeight={"medium"}>
+        <Paragraph
+          fontSize={"label"}
+          fontWeight={"medium"}
+          className={"text-label-alternative"}
+        >
           더보기
         </Paragraph>
         <SVGIcon

@@ -58,7 +58,7 @@ interface AvatarProps extends VariantProps<typeof AvatarVariants> {
 const Avatar = ({ shape, size, avatar }: AvatarProps) => {
   return (
     <div className={cn(AvatarVariants({ shape, size }))}>
-      <Image src={AvatarDummy} alt="avatar" fill />
+      <Image src={avatar || AvatarDummy} alt="avatar" fill />
     </div>
   );
 };

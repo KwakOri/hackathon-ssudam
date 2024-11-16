@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/services/services";
+import { BASE_URL } from "@/services/service";
 import { http, HttpResponse } from "msw";
 
 export const handlers = [

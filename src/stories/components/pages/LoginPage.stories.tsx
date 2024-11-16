@@ -1,20 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import SignupPages from "@/components/pages/SignupPages";
+import LoginPage from "@/components/pages/LoginPage";
 
 const meta = {
-  title: "Pages/SignupPages",
-  component: SignupPages,
+  title: "Pages/LoginPage",
+  component: LoginPage,
   parameters: {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {
-    currentStep: {
-      options: ["email", "password", "nickname", "principles"],
-      control: { type: "radio" },
-    },
-  },
+  argTypes: {},
   args: {},
   decorators: [
     (Story) => (
@@ -28,13 +23,11 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof SignupPages>;
+} satisfies Meta<typeof LoginPage>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    currentStep: "email",
-  },
+  args: {},
 };

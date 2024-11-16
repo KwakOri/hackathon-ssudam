@@ -1,11 +1,15 @@
 import Paragraph from "@/components/atoms/Paragraph/Paragraph";
-interface FunnelPanelTitle {
+interface AuthFunnelPanelTitle {
   title: string;
   steps: number;
   currentStep: number;
 }
 
-const FunnelPanelTitle = ({ title, steps, currentStep }: FunnelPanelTitle) => {
+const AuthFunnelPanelTitle = ({
+  title,
+  steps,
+  currentStep,
+}: AuthFunnelPanelTitle) => {
   return (
     <div className="w-full flex justify-between items-center">
       <Paragraph>{title}</Paragraph>
@@ -20,4 +24,4 @@ const FunnelPanelTitle = ({ title, steps, currentStep }: FunnelPanelTitle) => {
   );
 };
 
-export default FunnelPanelTitle;
+export default AuthFunnelPanelTitle;

@@ -1,7 +1,9 @@
 import { PropsWithChildren } from "react";
-
-const Page = ({ children }: PropsWithChildren) => {
-  return <main className={"w-full h-full"}>{children}</main>;
+interface PageProps {
+  className?: string;
+}
+const Page = ({ children, className }: PropsWithChildren<PageProps>) => {
+  return <main className={`w-full h-full ${className}`}>{children}</main>;
 };
 
 export default Page;
