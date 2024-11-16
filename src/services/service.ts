@@ -1,4 +1,4 @@
-import AuthAPI from "@/services/auth/auth.services";
+import AuthAPI from "@/services/auth/auth.service";
 import axios, { AxiosInstance } from "axios";
 
 export const BASE_URL = "https://b6f2-220-88-76-114.ngrok-free.app";

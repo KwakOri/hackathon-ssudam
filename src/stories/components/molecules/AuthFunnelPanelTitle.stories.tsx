@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import FunnelPanel from "@/components/organisms/FunnelPanel";
+import AuthFunnelPanelTitle from "@/components/molecules/AuthFunnelPanelTitle";
 
 const meta = {
-  title: "Organisms/FunnelPanel",
-  component: FunnelPanel,
+  title: "Molecules/AuthFunnelPanelTitle",
+  component: AuthFunnelPanelTitle,
   parameters: {
     layout: "centered",
   },
@@ -15,7 +15,14 @@ const meta = {
     title: { description: "Funnel Title" },
   },
   args: {},
-} satisfies Meta<typeof FunnelPanel>;
+  decorators: [
+    (Story) => (
+      <div style={{ width: "320px" }}>
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof AuthFunnelPanelTitle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

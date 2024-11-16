@@ -3,7 +3,7 @@ import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";
 import Textfield from "@/components/molecules/Textfield";
 import SignupTemplate from "@/components/templates/SignupTemplate";
-import api from "@/services/services";
+import api from "@/services/service";
 import { ChangeEventHandler, useState } from "react";
 
 type StepTypes = "email" | "password" | "nickname" | "principles" | "done";

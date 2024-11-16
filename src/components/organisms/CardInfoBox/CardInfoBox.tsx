@@ -1,7 +1,7 @@
-import CardTitle from "@/components/molecules/CardTitle";
 import Badge from "@/components/atoms/Badge";
-import { PropsWithChildren } from "react";
+import CardTitle from "@/components/molecules/CardTitle";
 import OptionTitle from "@/components/molecules/OptionTitle";
+import { PropsWithChildren } from "react";
 
 interface BadgeInfo {
   content: React.ReactNode;
@@ -33,7 +33,7 @@ interface CardInfoBoxProps {
   title: string;
   isChecked: boolean;
   badges: BadgeInfo[];
-  options: OptionInfo[];
+  options?: OptionInfo[];
   isOption: boolean;
 }
 
@@ -61,7 +61,7 @@ const CardInfoBox = ({
 
       {isOption && (
         <div className="flex flex-col gap-[8px] mt-[16px] ">
-          {options.map((optionInfo, index) => (
+          {options?.map((optionInfo, index) => (
             <OptionTitle
               key={index}
               option={optionInfo.option}

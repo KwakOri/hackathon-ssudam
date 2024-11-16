@@ -27,7 +27,7 @@ const Header = ({
             <Paragraph>LOGO</Paragraph>
             <Paragraph>{title}</Paragraph>
           </div>
-          <button>
+          <button onClick={() => sidebar.open()}>
             <SVGIcon icon={"Menu"} />
           </button>
         </>
@@ -43,7 +43,7 @@ const Header = ({
             )}
             <Paragraph>{title}</Paragraph>
           </div>
-          <button>
+          <button onClick={() => sidebar.open()}>
             <SVGIcon icon={"Menu"} />
           </button>
         </>
@@ -62,9 +62,6 @@ const Header = ({
           </button>
         </>
       )}
-      <button onClick={() => sidebar.open()}>
-        <SVGIcon icon={"Menu"} />
-      </button>
     </div>
   );
 };
