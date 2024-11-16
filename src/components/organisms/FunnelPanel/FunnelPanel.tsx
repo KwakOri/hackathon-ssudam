@@ -1,17 +1,13 @@
 import PaginationBar from "@/components/atoms/PaginationBar";
-import FunnelPanelTitle from "@/components/molecules/AuthFunnelPanelTitle";
+import FunnelPanelTitle from "@/components/molecules/FunnelPanelTitle";
 
-interface AuthFunnelPanelProps {
+interface FunnelPanelProps {
   title: string;
   currentStep: number;
   steps: number;
 }
 
-const AuthFunnelPanel = ({
-  title,
-  currentStep,
-  steps,
-}: AuthFunnelPanelProps) => {
+const FunnelPanel = ({ title, currentStep, steps }: FunnelPanelProps) => {
   return (
     <div className={"flex flex-col gap-4 p-4 border-line-normal border-b"}>
       <FunnelPanelTitle title={title} currentStep={currentStep} steps={steps} />
@@ -20,4 +16,4 @@ const AuthFunnelPanel = ({
   );
 };
 
-export default AuthFunnelPanel;
+export default FunnelPanel;
