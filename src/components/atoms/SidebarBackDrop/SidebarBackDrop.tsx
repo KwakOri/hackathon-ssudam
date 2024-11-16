@@ -20,7 +20,7 @@ function SidebarBackDrop({
 
       <div
         onClick={handleCancel}
-        className="z-30 fixed inset-0 bg-accent-red-normal"
+        className="z-30 fixed inset-0 bg-dimmer-normal"
       ></div>
     </div>
   );
