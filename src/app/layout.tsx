@@ -20,8 +20,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="kr" className={`${pretendard.variable}`}>
-      <body className={pretendard.className}>{children}</body>
+    <html lang="kr" className={`${pretendard.variable} w-full h-full`}>
+      <body className={`${pretendard.className} w-full h-full`}>
+        <div className={"w-full h-full fixed overflow-hidden"}>{children}</div>
+      </body>
     </html>
   );
 }

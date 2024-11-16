@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import {
   getVariantsWithCommonClass,
   IconMap,
@@ -6,7 +8,6 @@ import {
 } from "@/icons/icons";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { lazy, Suspense, useMemo } from "react";
 
 const IconVariants = getVariantsWithCommonClass(
   Object.keys(IconMap) as IconMapTypes[],
@@ -17,7 +18,7 @@ const SVGIconVariants = cva("fill-label-neutral", {
   variants: {
     icon: {
       ...IconVariants,
-      StarLine: "stroke-label-alternative fill-none",
+      StarLine: "stroke-label-neutral fill-none",
       StarFill: "fill-primary-strong",
       FilterFill: "fill-primary-strong",
     },
@@ -30,7 +31,6 @@ const SVGIconVariants = cva("fill-label-neutral", {
 interface SVGIconProps extends VariantProps<typeof SVGIconVariants> {
   size?: "lg" | "md" | "sm";
   className?: string;
-  icon: IconMapTypes;
 }
 
 const SVGIcon: React.FC<SVGIconProps> = ({
@@ -38,28 +38,14 @@ const SVGIcon: React.FC<SVGIconProps> = ({
   size = "lg",
   className,
 }: SVGIconProps) => {
-  const Icon: React.LazyExoticComponent<
-    React.FC<React.SVGProps<SVGSVGElement>>
-  > = useMemo(() => lazy(IconMap[icon]), [icon]);
+  const Icon = IconMap[icon as IconMapTypes];
 
   return (
-    <Suspense
-      fallback={
-        <div
-          style={{
-            width: IconSizes[size] + "px",
-            height: IconSizes[size] + "px",
-          }}
-          className={`bg-transparent rounded-md`}
-        ></div>
-      }
-    >
-      <Icon
-        className={cn(SVGIconVariants({ icon, className }))}
-        width={IconSizes[size]}
-        height={IconSizes[size]}
-      />
-    </Suspense>
+    <Icon
+      className={cn(SVGIconVariants({ icon, className }))}
+      width={IconSizes[size]}
+      height={IconSizes[size]}
+    />
   );
 };
 

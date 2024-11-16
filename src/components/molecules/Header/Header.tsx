@@ -1,6 +1,9 @@
+"use client";
+
 import Avatar from "@/components/atoms/Avatar";
 import Paragraph from "@/components/atoms/Paragraph/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
+import { useSidebar } from "@/contexts/Sidebar/Sidebar.context";
 import { PropsWithChildren } from "react";
 
 interface HeaderProps {
@@ -13,8 +16,9 @@ interface HeaderProps {
 const Header = ({
   intent,
   children,
-  title = "title",
+  title = "",
 }: PropsWithChildren<HeaderProps>) => {
+  const sidebar = useSidebar();
   return (
     <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal">
       {intent === "main" && (
@@ -58,6 +62,9 @@ const Header = ({
           </button>
         </>
       )}
+      <button onClick={() => sidebar.open()}>
+        <SVGIcon icon={"Menu"} />
+      </button>
     </div>
   );
 };

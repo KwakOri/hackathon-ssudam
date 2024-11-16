@@ -3,76 +3,45 @@ import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";
 import Textfield from "@/components/molecules/Textfield";
 import SignupTemplate from "@/components/templates/SignupTemplate";
-import { useState } from "react";
-interface SignupPagesProps {}
-interface AuthInfoTypes {
+import api from "@/services/services";
+import { ChangeEventHandler, useState } from "react";
+
+type StepTypes = "email" | "password" | "nickname" | "principles" | "done";
+interface UserInfoTypes {
   email: string;
-  code: string;
-  isAuthenticated: boolean;
   password: string;
   nickname: string;
+  authCode: string;
+  isEmailValid: boolean;
+  isPasswordValid: boolean;
+  isNicknameValid: boolean;
 }
 
-const SignupPages = ({}: SignupPagesProps) => {
-  const [currentStep, setCurrentStep] = useState<string>("nickname");
-  const [isAuth, setIsAuth] = useState<boolean>(false);
-  const [authInfo, setAuthInfo] = useState<AuthInfoTypes>({
+const SignupPages = () => {
+  const [currentStep, setCurrentStep] = useState<StepTypes>("email");
+  const [userInfo, setUserInfo] = useState<UserInfoTypes>({
     email: "",
-    isAuthenticated: false,
-    code: "",
     password: "",
     nickname: "",
+    authCode: "",
+    isEmailValid: false,
+    isPasswordValid: false,
+    isNicknameValid: false,
   });
 
-  console.log(authInfo);
-
-  const sendAuthMail = async () => {
-    const res = await fetch(
-      "https://b6f2-220-88-76-114.ngrok-free.app/auth/auth-code",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": "true",
-          "ngrok-skip-browser-warning": "true",
-        },
-        body: JSON.stringify({ email: authInfo.email }),
-      }
-    );
-    const message = await res.json();
-    console.log(message);
-    setIsAuth(true);
+  const onEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setUserInfo((prev) => ({
+      ...prev,
+      email: e.currentTarget.value,
+    }));
   };
-
-  // const SignupSteps = {
-  //   email: {},
-  //   password: {},
-  //   nickname: {},
-  // };
 
   return (
     <div className="w-full h-full">
       {currentStep === "email" && (
         <SignupTemplate
           title={"회원가입"}
-          onClick={async () => {
-            const res = await fetch(
-              `https://b6f2-220-88-76-114.ngrok-free.app/auth/verify-email?email=${authInfo.email}&verifyCode=${authInfo.code}`,
-              {
-                headers: {
-                  "Access-Control-Allow-Credentials": "true",
-                  "ngrok-skip-browser-warning": "true",
-                },
-              }
-            );
-            const data = await res.json();
-            console.log(data);
-            if (data.status !== 200) {
-              alert("인증코드가 일치하지 않습니다.");
-              return;
-            }
-            setCurrentStep("password");
-          }}
+          onClick={() => setCurrentStep("password")}
         >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
@@ -84,21 +53,27 @@ const SignupPages = ({}: SignupPagesProps) => {
           </div>
           <div>
             <Textfield
-              buttonLabel={isAuth ? "재발송" : "인증"}
-              buttonOnClick={sendAuthMail}
+              buttonLabel="인증"
+              buttonOnClick={async () => {
+                const res = await api.auth.checkIsExistingEmail({
+                  email: userInfo.email,
+                });
+                console.log(res);
+              }}
               label="이메일"
               placeholder="이메일을 입력해주세요."
               validationOption="ValidationOption"
-              value={authInfo.email}
-              onChange={(e) => {
-                setAuthInfo((prev) => ({ ...prev, email: e.target.value }));
-              }}
+              value={userInfo.email}
+              onChange={onEmailChange}
             />
             <div className="grow flex justify-between items-center p-3 rounded-[13px] border border-line-normal bg-fill-pale">
               <input
-                value={authInfo.code}
+                value={userInfo.authCode}
                 onChange={(e) => {
-                  setAuthInfo((prev) => ({ ...prev, code: e.target.value }));
+                  setUserInfo((prev) => ({
+                    ...prev,
+                    authCode: e.target.value,
+                  }));
                 }}
                 placeholder={"인증번호를 입력해주세요"}
                 type="text"
@@ -134,25 +109,7 @@ const SignupPages = ({}: SignupPagesProps) => {
       {currentStep === "nickname" && (
         <SignupTemplate
           title={"회원가입"}
-          onClick={async () => {
-            if (authInfo.nickname === "") {
-              alert("이름을 입력해주세요.");
-              return;
-            }
-            const res = await fetch(
-              `https://b6f2-220-88-76-114.ngrok-free.app/auth/verify-nickname?nickname=${authInfo.nickname}`,
-              {
-                headers: {
-                  "Access-Control-Allow-Credentials": "true",
-                  "ngrok-skip-browser-warning": "true",
-                },
-              }
-            );
-            const data = await res.json();
-            console.log(data);
-
-            // setCurrentStep("principles");
-          }}
+          onClick={() => setCurrentStep("principles")}
         >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
@@ -167,15 +124,18 @@ const SignupPages = ({}: SignupPagesProps) => {
             label="이름"
             placeholder="이름을 입력해주세요."
             helperMessage="쓰담쓰담 내에서 사용할 이름을 자유롭게 입력해주세요."
-            value={authInfo.nickname}
+            value={userInfo.nickname}
             onChange={(e) => {
-              setAuthInfo((prev) => ({ ...prev, nickname: e.target.value }));
+              setUserInfo((prev) => ({ ...prev, nickname: e.target.value }));
             }}
           />
         </SignupTemplate>
       )}
       {currentStep === "principles" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={() => setCurrentStep("done")}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               이용약관에
