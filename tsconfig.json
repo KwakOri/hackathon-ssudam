@@ -21,6 +21,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/stories/components/molecules/SidebarCategory.stories.tsㅌ"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/stories/components/molecules/SidebarCategory.stories.tsㅌ"
+  ],
   "exclude": ["node_modules"]
 }

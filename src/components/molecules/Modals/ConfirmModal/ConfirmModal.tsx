@@ -1,6 +1,6 @@
 "use client";
 import AnimatedModalFrame from "@/components/molecules/Modals/AnimatedModalFrame";
-import { useModal } from "@/contexts/modal.context/modal.context";
+
 import { useState } from "react";
 
 interface ConfirmModalProps {

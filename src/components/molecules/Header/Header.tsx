@@ -11,7 +11,7 @@ interface HeaderProps {
 const Header = ({
   intent,
   children,
-  title = "title",
+  title = "",
 }: PropsWithChildren<HeaderProps>) => {
   return (
     <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal">

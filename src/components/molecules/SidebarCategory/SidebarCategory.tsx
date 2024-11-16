@@ -3,9 +3,9 @@ import SVGIcon from "@/components/atoms/SVGIcon";
 import { IconMapTypes } from "@/icons/icons";
 import { cn } from "@/utils/cn";
 import { cva } from "class-variance-authority";
-import { ButtonHTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 
-interface SidebarCategoryProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface SidebarCategoryProps extends HTMLAttributes<HTMLDivElement> {
   icon: IconMapTypes;
   label: string;
   isActive?: boolean;
@@ -15,8 +15,8 @@ interface SidebarCategoryProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const SidebarCategoryIconVariants = cva("", {
   variants: {
     isActive: {
-      true: "text-primary-heavy",
-      false: "text-label-strong",
+      true: "fill-primary-heavy",
+      false: "fill-label-strong",
     },
   },
 });
@@ -29,7 +29,7 @@ const SidebarCategory = ({
   ...props
 }: SidebarCategoryProps) => {
   return (
-    <button
+    <div
       {...props}
       className={`w-full py-3 px-4 flex justify-between items-center relative ${
         isActive && "bg-primary-light"
@@ -56,11 +56,11 @@ const SidebarCategory = ({
         </Paragraph>
       </div>
       {isDropDown && (
-        <button>
+        <div>
           <SVGIcon icon={"ChevronDown"} size={"sm"} />
-        </button>
+        </div>
       )}
-    </button>
+    </div>
   );
 };
 

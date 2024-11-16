@@ -1,7 +1,7 @@
 "use client";
 
 import AnimatedModalFrame from "@/components/molecules/Modals/AnimatedModalFrame";
-import { useModal } from "@/contexts/contexts/Modal/Modal.context";
+import { useModal } from "@/contexts/Modal/Modal.context";
 import { useState } from "react";
 
 interface ModalProps {
