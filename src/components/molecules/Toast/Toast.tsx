@@ -1,6 +1,6 @@
 import CancelSVG from "@/assets/modal/cancel.svg";
 import ToastAlertSVG from "@/assets/toast/toast-alert.svg";
-import { useToast } from "@/contexts/contexts/Toast/Toast.context";
+import { useToast } from "@/contexts/Toast/Toast.context";
 
 import { ToastTypes } from "@/types/toast";
 import { useEffect, useState } from "react";

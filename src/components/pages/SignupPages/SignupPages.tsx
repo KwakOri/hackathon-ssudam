@@ -3,24 +3,44 @@ import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";
 import Textfield from "@/components/molecules/Textfield";
 import SignupTemplate from "@/components/templates/SignupTemplate";
-import { useState } from "react";
+import api from "@/services/services";
+import { ChangeEventHandler, useState } from "react";
 
-interface SignupPagesProps {
-  currentStep: "email" | "password" | "nickname" | "principles";
+type StepTypes = "email" | "password" | "nickname" | "principles" | "done";
+interface UserInfoTypes {
+  email: string;
+  password: string;
+  nickname: string;
+  isEmailValid: boolean;
+  isPasswordValid: boolean;
+  isNicknameValid: boolean;
 }
 
-const SignupPages = ({ currentStep }: SignupPagesProps) => {
-  const [_, setCurrentStep] = useState<string>("email");
-  // const SignupSteps = {
-  //   email: {},
-  //   password: {},
-  //   nickname: {},
-  // };
+const SignupPages = () => {
+  const [currentStep, setCurrentStep] = useState<StepTypes>("email");
+  const [userInfo, setUserInfo] = useState<UserInfoTypes>({
+    email: "",
+    password: "",
+    nickname: "",
+    isEmailValid: false,
+    isPasswordValid: false,
+    isNicknameValid: false,
+  });
+
+  const onEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setUserInfo((prev) => ({
+      ...prev,
+      email: e.currentTarget.value,
+    }));
+  };
 
   return (
     <>
       {currentStep === "email" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={() => setCurrentStep("password")}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               이메일 인증이
@@ -32,10 +52,17 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
           <div>
             <Textfield
               buttonLabel="인증"
-              buttonOnClick={() => {}}
+              buttonOnClick={async () => {
+                const res = await api.auth.checkIsExistingEmail({
+                  email: userInfo.email,
+                });
+                console.log(res);
+              }}
               label="이메일"
               placeholder="이메일을 입력해주세요."
               validationOption="ValidationOption"
+              value={userInfo.email}
+              onChange={onEmailChange}
             />
             <div className="grow flex justify-between items-center p-3 rounded-[13px] border border-line-normal bg-fill-pale">
               <input
@@ -50,7 +77,10 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
         </SignupTemplate>
       )}
       {currentStep === "password" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={() => setCurrentStep("nickname")}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               비밀번호를
@@ -68,7 +98,10 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
         </SignupTemplate>
       )}
       {currentStep === "nickname" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={() => setCurrentStep("principles")}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               이름을
@@ -86,7 +119,10 @@ const SignupPages = ({ currentStep }: SignupPagesProps) => {
         </SignupTemplate>
       )}
       {currentStep === "principles" && (
-        <SignupTemplate title={"회원가입"} onClick={() => setCurrentStep("")}>
+        <SignupTemplate
+          title={"회원가입"}
+          onClick={() => setCurrentStep("done")}
+        >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
               이용약관에

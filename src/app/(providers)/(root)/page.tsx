@@ -1,13 +1,10 @@
-"use client";
+import Page from "@/components/Layouts/Page/Page";
+import Header from "@/components/molecules/Header";
 
-import IconButton from "@/components/atoms/IconButton";
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="bg-white">
-      <IconButton intent={"fill"} />
-      <IconButton intent={"light"} />
-      <IconButton intent={"white"} />
-    </main>
+    <Page>
+      <Header intent="main"></Header>
+    </Page>
   );
 }
