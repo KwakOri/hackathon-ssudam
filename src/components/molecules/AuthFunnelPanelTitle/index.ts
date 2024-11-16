@@ -1,1 +1,1 @@
-export { default } from "./FunnelPanelTitle";
+export { default } from "./AuthFunnelPanelTitle";

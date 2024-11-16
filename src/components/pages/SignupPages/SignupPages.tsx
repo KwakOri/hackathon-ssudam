@@ -17,7 +17,7 @@ interface UserInfoTypes {
   isNicknameValid: boolean;
 }
 
-const SignupPages = () => {
+const SignupFunnel = () => {
   const [currentStep, setCurrentStep] = useState<StepTypes>("email");
   const [userInfo, setUserInfo] = useState<UserInfoTypes>({
     email: "",
@@ -235,4 +235,4 @@ const SignupPages = () => {
   );
 };
 
-export default SignupPages;
+export default SignupFunnel;
