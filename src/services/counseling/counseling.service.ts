@@ -1,3 +1,4 @@
+import { ChatResponse } from "@/types/chat/chat.types";
 import { AxiosInstance } from "axios";
 
 class CounselingAPI {
@@ -8,8 +9,7 @@ class CounselingAPI {
   }
 
   async getPrevChats() {
-    const res = await this.client.get("/chat/prev-chats");
-    console.log("hello");
+    const res: ChatResponse = await this.client.get("/chat/prev-chats");
     return res.data;
   }
 }
