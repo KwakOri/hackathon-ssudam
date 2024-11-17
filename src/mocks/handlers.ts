@@ -13,4 +13,13 @@ export const handlers = [
       lastName: "Maverick",
     });
   }),
+  http.get(`${BASE_URL}/auth/check-email`, ({ request }) => {
+    const url = new URL(request.url);
+    const email = url.searchParams.get("email");
+
+    if (!email) {
+      return new HttpResponse(null, { status: 404 });
+    }
+    return HttpResponse.json({ message: "사용가능한 이메일입니다." });
+  }),
 ];
