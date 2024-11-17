@@ -2,7 +2,7 @@ import Border from "@/components/atoms/Border";
 import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";
 import Textfield from "@/components/molecules/Textfield";
-import SignupTemplate from "@/components/templates/SignupTemplate";
+import SignupFunnelStep from "@/components/templates/SignupFunnelStep";
 import api from "@/services/service";
 import { ChangeEventHandler, useState } from "react";
 
@@ -39,7 +39,7 @@ const SignupFunnel = () => {
   return (
     <div className="w-full h-full">
       {currentStep === "email" && (
-        <SignupTemplate
+        <SignupFunnelStep
           title={"회원가입"}
           onClick={() => setCurrentStep("password")}
         >
@@ -83,10 +83,10 @@ const SignupFunnel = () => {
               />
             </div>
           </div>
-        </SignupTemplate>
+        </SignupFunnelStep>
       )}
       {currentStep === "password" && (
-        <SignupTemplate
+        <SignupFunnelStep
           title={"회원가입"}
           onClick={() => setCurrentStep("nickname")}
         >
@@ -104,10 +104,10 @@ const SignupFunnel = () => {
             placeholder="비밀번호를 입력해주세요."
             helperMessage="비밀번호는 영문 대소문자, 숫자, 특수문자를 혼합하여 8~20자 이내로 입력해주세요."
           />
-        </SignupTemplate>
+        </SignupFunnelStep>
       )}
       {currentStep === "nickname" && (
-        <SignupTemplate
+        <SignupFunnelStep
           title={"회원가입"}
           onClick={() => setCurrentStep("principles")}
         >
@@ -129,10 +129,10 @@ const SignupFunnel = () => {
               setUserInfo((prev) => ({ ...prev, nickname: e.target.value }));
             }}
           />
-        </SignupTemplate>
+        </SignupFunnelStep>
       )}
       {currentStep === "principles" && (
-        <SignupTemplate
+        <SignupFunnelStep
           title={"회원가입"}
           onClick={() => setCurrentStep("done")}
         >
@@ -229,7 +229,7 @@ const SignupFunnel = () => {
               </CheckInput>
             </div>
           </article>
-        </SignupTemplate>
+        </SignupFunnelStep>
       )}
     </div>
   );

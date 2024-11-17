@@ -1,18 +1,18 @@
 import Button from "@/components/atoms/Button";
 import SignUpHeader from "@/components/molecules/SignUpHeader";
 import { PropsWithChildren } from "react";
-interface SignupTemplateProps {
+interface SignupFunnelStepProps {
   title: string;
   isMain?: boolean;
   onClick: any;
 }
 
-const SignupTemplate = ({
+const SignupFunnelStep = ({
   children,
   title,
   isMain = false,
   onClick,
-}: PropsWithChildren<SignupTemplateProps>) => {
+}: PropsWithChildren<SignupFunnelStepProps>) => {
   return (
     <section className={"flex flex-col relative w-full h-full"}>
       <SignUpHeader title={title} isMain={isMain} />
@@ -27,4 +27,4 @@ const SignupTemplate = ({
   );
 };
 
-export default SignupTemplate;
+export default SignupFunnelStep;

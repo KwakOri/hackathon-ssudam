@@ -7,7 +7,12 @@ import { useSidebar } from "@/contexts/Sidebar/Sidebar.context";
 import { PropsWithChildren } from "react";
 
 interface HeaderProps {
-  intent: "main" | "labelWithMenuIcon" | "label" | "labelWithCloseIcon";
+  intent:
+    | "main"
+    | "labelWithMenuIcon"
+    | "label"
+    | "labelWithCloseIcon"
+    | "labelWithBackIcon";
   title?: string;
   leftIconOnClink?: () => void;
   rightIconOnClink?: () => void;
@@ -20,7 +25,7 @@ const Header = ({
 }: PropsWithChildren<HeaderProps>) => {
   const sidebar = useSidebar();
   return (
-    <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal">
+    <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal bg-background-normal">
       {intent === "main" && (
         <>
           <div className="flex gap-2">
@@ -58,6 +63,20 @@ const Header = ({
             <Paragraph>{title}</Paragraph>
           </div>
           <button>
+            <SVGIcon icon={"Close"} />
+          </button>
+        </>
+      )}
+
+      {intent === "labelWithBackIcon" && (
+        <>
+          <button className="">
+            <SVGIcon icon={"ArrowLeft"} />
+          </button>
+          <div className="flex gap-2">
+            <Paragraph>{title}</Paragraph>
+          </div>
+          <button className="opacity-0 pointer-events-none">
             <SVGIcon icon={"Close"} />
           </button>
         </>

@@ -3,7 +3,19 @@ import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { PropsWithChildren } from "react";
 
-const ChatBoxWrapperVariants = cva("px-4 py-[9px] neon-light", {
+const ChatBoxWrapperVariants = cva("py-2 w-full flex", {
+  variants: {
+    isMine: {
+      true: "justify-end",
+      false: "justify-start",
+    },
+  },
+  defaultVariants: {
+    isMine: false,
+  },
+});
+
+const ChatBoxVariants = cva("px-4 py-[9px] neon-light", {
   variants: {
     isMine: {
       true: "bg-primary-heavy",
@@ -32,17 +44,20 @@ const ChatBoxWrapperVariants = cva("px-4 py-[9px] neon-light", {
   },
 });
 
-const ChatBoxVariants = cva("", {
+const ChatBoxTextVariants = cva("", {
   variants: {
     isMine: {
       true: "text-static-white",
       false: "text-label-normal",
     },
   },
+  defaultVariants: {
+    isMine: false,
+  },
 });
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface ChatBoxProps extends VariantProps<typeof ChatBoxWrapperVariants> {}
+interface ChatBoxProps extends VariantProps<typeof ChatBoxVariants> {}
 
 const ChatBox = ({
   children,
@@ -50,14 +65,16 @@ const ChatBox = ({
   type,
 }: PropsWithChildren<ChatBoxProps>) => {
   return (
-    <div className={cn(ChatBoxWrapperVariants({ isMine, type }))}>
-      <Paragraph
-        fontSize={"body2"}
-        fontWeight={"medium"}
-        className={cn(ChatBoxVariants({ isMine }))}
-      >
-        {children}
-      </Paragraph>
+    <div className={cn(ChatBoxWrapperVariants({ isMine }))}>
+      <div className={cn(ChatBoxVariants({ isMine, type }))}>
+        <Paragraph
+          fontSize={"body2"}
+          fontWeight={"medium"}
+          className={cn(ChatBoxTextVariants({ isMine }))}
+        >
+          {children}
+        </Paragraph>
+      </div>
     </div>
   );
 };

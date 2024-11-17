@@ -1,24 +1,15 @@
 "use client";
-import Button from "@/components/atoms/Button";
 import Page from "@/components/Layouts/Page/Page";
 import Section from "@/components/Layouts/Section/Section";
 import Header from "@/components/molecules/Header";
 import SectionTitle from "@/components/molecules/SectionTitle";
-import CardInfoBox from "@/components/organisms/CardInfoBox";
+import Carousel from "@/components/organisms/Carousel";
 import ChatFormalModeBox from "@/components/organisms/ChatModeBox/ChatFormalModeBox";
 import ChatInformalModeBox from "@/components/organisms/ChatModeBox/ChatInformalModeBox";
-import api from "@/services/service";
-import Carousel from "@/components/organisms/Carousel";
 
 export default function HomePage() {
-  const getDate = async () => {
-    const response = await api.auth.getUser();
-    console.log(response);
-    return response.data;
-  };
   return (
     <Page className="flex flex-col gap-4">
-      <Button onClick={getDate}>이거 눌러조</Button>
       <Header intent="main"></Header>
       <Section>
         <SectionTitle>AI 심리상담</SectionTitle>
