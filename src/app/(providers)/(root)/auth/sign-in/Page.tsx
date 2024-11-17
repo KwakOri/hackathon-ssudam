@@ -3,7 +3,7 @@ import Button from "@/components/atoms/Button";
 import Header from "@/components/molecules/Header";
 import Textfield from "@/components/molecules/Textfield";
 
-const LoginPage = () => {
+const SignInPage = () => {
   return (
     <section className="w-full">
       <Header intent="labelWithCloseIcon" title={"로그인"} />
@@ -19,4 +19,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignInPage;

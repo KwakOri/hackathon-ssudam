@@ -4,9 +4,7 @@ interface PageProps {
 }
 const Page = ({ children, className }: PropsWithChildren<PageProps>) => {
   return (
-    <main
-      className={`w-full h-full overflow-x-hidden overflow-y-scroll ${className}`}
-    >
+    <main className={`w-full h-full flex flex-col ${className}`}>
       {children}
     </main>
   );

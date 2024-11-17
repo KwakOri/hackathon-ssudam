@@ -25,7 +25,7 @@ const Header = ({
 }: PropsWithChildren<HeaderProps>) => {
   const sidebar = useSidebar();
   return (
-    <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal bg-background-normal">
+    <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal bg-background-normal shrink-0">
       {intent === "main" && (
         <>
           <div className="flex gap-2">
