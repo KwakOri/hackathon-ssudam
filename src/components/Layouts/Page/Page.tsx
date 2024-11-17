@@ -3,7 +3,13 @@ interface PageProps {
   className?: string;
 }
 const Page = ({ children, className }: PropsWithChildren<PageProps>) => {
-  return <main className={`w-full h-full ${className}`}>{children}</main>;
+  return (
+    <main
+      className={`w-full h-full overflow-x-hidden overflow-y-scroll ${className}`}
+    >
+      {children}
+    </main>
+  );
 };
 
 export default Page;

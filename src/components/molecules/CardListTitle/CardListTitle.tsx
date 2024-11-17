@@ -1,13 +1,13 @@
 import Paragraph from "@/components/atoms/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
-import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
+import { useState } from "react";
 
 const CardListTitleVariants = cva("", {
   variants: {
     isChecked: {
-      true: "fill-primary-heavy stroke-primary-heavy",
-      false: "fill-transparent stroke-label-neutral",
+      true: "StarFill",
+      false: "StarLine",
     },
   },
 });
@@ -18,7 +18,8 @@ interface CardListTitleProps
   year: string;
   month: string;
   day: string;
-  isChecked: boolean;
+  from: string;
+  initialChecked?: boolean;
 }
 
 const CardListTitle = ({
@@ -26,8 +27,15 @@ const CardListTitle = ({
   year,
   month,
   day,
-  isChecked,
+  from,
+  initialChecked = false,
 }: CardListTitleProps) => {
+  const [isChecked, setIsChecked] = useState(initialChecked);
+
+  const handleToggleCheck = () => {
+    setIsChecked((prev) => !prev);
+  };
+
   return (
     <div className="flex flex-col gap-1">
       <div className="flex justify-between items-center">
@@ -36,7 +44,7 @@ const CardListTitle = ({
           fontWeight={"medium"}
           className={"text-label-neutral"}
         >
-          From
+          {from}
         </Paragraph>
         <Paragraph
           fontSize={"caption1"}
@@ -56,7 +64,7 @@ const CardListTitle = ({
         >
           {title}
         </Paragraph>
-        <button>
+        <button onClick={handleToggleCheck}>
           <SVGIcon icon={isChecked ? "StarFill" : "StarLine"} size={"md"} />
         </button>
       </div>

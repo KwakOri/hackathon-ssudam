@@ -14,8 +14,8 @@ const meta = {
     year: { description: "년도" },
     month: { description: "월" },
     day: { description: "일" },
-    isChecked: { description: "체크 여부", control: "boolean" },
     content: { description: "내용" },
+    from: { description: "From" },
   },
   args: {},
 } satisfies Meta<typeof CardListBox>;
@@ -29,6 +29,7 @@ export const Default: Story = {
     year: "yy",
     month: "mm",
     day: "dd",
+    from: "From",
     isChecked: false,
     badges: [
       { content: "Label 1", intent: "yellow_light" },

@@ -24,6 +24,6 @@ export const Default: Story = {
     year: "24",
     month: "11",
     day: "10",
-    isChecked: false,
+    from: "From",
   },
 };
