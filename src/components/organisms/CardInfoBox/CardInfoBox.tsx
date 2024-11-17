@@ -4,7 +4,7 @@ import OptionTitle from "@/components/molecules/OptionTitle";
 import { PropsWithChildren } from "react";
 
 interface BadgeInfo {
-  content: React.ReactNode;
+  content: string;
   intent:
     | "primary"
     | "primary_light"
