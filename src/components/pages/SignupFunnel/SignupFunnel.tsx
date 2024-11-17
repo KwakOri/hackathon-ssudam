@@ -1,3 +1,5 @@
+"use client";
+
 import Border from "@/components/atoms/Border";
 import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";

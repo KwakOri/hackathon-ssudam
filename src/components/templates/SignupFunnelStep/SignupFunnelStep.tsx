@@ -17,7 +17,7 @@ const SignupFunnelStep = ({
     <section className={"flex flex-col relative w-full h-full"}>
       <SignUpHeader title={title} isMain={isMain} />
       <div className={"grow w-full flex flex-col justify-between p-4"}>
-        <div className={"flex flex-col gap-10 p-4"}>{children}</div>
+        <div className={"flex flex-col gap-10"}>{children}</div>
 
         <Button onClick={onClick} className="">
           다음
