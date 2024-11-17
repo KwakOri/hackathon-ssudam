@@ -1,7 +1,7 @@
 import Button from "@/components/atoms/Button";
 import { PropsWithChildren } from "react";
 interface SignupFunnelStepProps {
-  onNext: any;
+  onNext: () => void;
 }
 
 const CounselingFunnelStep = ({

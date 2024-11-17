@@ -1,12 +1,17 @@
 "use client";
 
-import { Toast } from "@/components/molecules/Toast/Toast";
-import { ToastTypes } from "@/types/toast";
+import Toast, { ToastTypes } from "@/components/molecules/Toast/Toast";
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 interface ToastContextTypes {
-  add: (content: ToastTypes["content"]) => void;
+  add: ({
+    content,
+    intent,
+  }: {
+    content: ToastTypes["content"];
+    intent: "normal" | "strong" | "accept" | "warning";
+  }) => void;
   delete: (id: ToastTypes["id"]) => void;
 }
 
@@ -22,24 +27,35 @@ export const useToast = () => useContext(ToastContext);
 export const ToastProvider = ({ children }: PropsWithChildren) => {
   const [toasts, setToasts] = useState<ToastTypes[]>([]);
   const value = {
-    add: (content: ToastTypes["content"]) => {
-      setToasts((prev) => [{ id: uuidv4(), content }, ...prev]);
+    add: ({
+      content,
+      intent,
+    }: {
+      content: ToastTypes["content"];
+      intent: "normal" | "strong" | "accept" | "warning";
+    }) => {
+      setToasts((prev) => [{ id: uuidv4(), content, intent }, ...prev]);
     },
     delete: (id: ToastTypes["id"]) => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
     },
   };
+  console.log(toasts);
 
   return (
     <ToastContext.Provider value={value}>
-      {children}
-
-      <div className="absolute top-4 right-4 pt-10">
-        {toasts &&
+      <div className="absolute top-16 flex flex-col gap-2 w-full px-4 z-50">
+        {toasts.length > 0 &&
           toasts.map((toast) => (
-            <Toast id={toast.id} key={toast.id} content={toast.content} />
+            <Toast
+              id={toast.id}
+              key={toast.id}
+              content={toast.content}
+              intent={toast.intent}
+            />
           ))}
       </div>
+      {children}
     </ToastContext.Provider>
   );
 };

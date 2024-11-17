@@ -4,6 +4,7 @@ import { colors } from "./src/colors/colors";
 
 const config: Config = {
   content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -159,6 +160,9 @@ const config: Config = {
         ".neon-red": {
           filter:
             "drop-shadow(0px 0px 30px rgba(252, 115, 129, 0.1)) drop-shadow(0px 0px 4.5px rgba(252, 115, 129, 0.3)) drop-shadow(0px 0px 3px rgba(252, 115, 129, 0.5))",
+        },
+        ".inner-border-dark": {
+          "box-shadow": "0px 0px 0px 1px inset rgba(84, 98, 140, 0.16)",
         },
         ".text-balance": {
           "text-wrap": "balance",
