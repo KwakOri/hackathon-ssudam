@@ -32,6 +32,7 @@ interface CardListBoxProps extends PropsWithChildren {
   isChecked: boolean;
   badges: BadgeInfo[];
   content: string;
+  from: string;
 }
 
 const CardListBox = ({
@@ -42,6 +43,7 @@ const CardListBox = ({
   isChecked,
   badges,
   content,
+  from,
 }: CardListBoxProps) => {
   return (
     <div className="flex flex-col gap-1 w-[350px]">
@@ -50,6 +52,7 @@ const CardListBox = ({
         year={year}
         month={month}
         day={day}
+        from={from}
         isChecked={isChecked}
       />
       <div className="flex gap-1">
