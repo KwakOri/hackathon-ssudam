@@ -22,8 +22,7 @@ const BadgeVariants = cva(
         blue: "bg-accent-blue-normal text-static-white",
         blue_light: "bg-accent-blue-light text-accent-blue-strong",
         gray: "bg-dimmer-normal text-common-100",
-        gray_light:
-          "bg-static-white text-label-normal border border-line-normal",
+        gray_light: "bg-fill-normal text-label-normal",
       },
     },
     defaultVariants: {
