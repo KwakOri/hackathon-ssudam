@@ -1,9 +1,9 @@
 "use client";
 
 import { UserChatRecord } from "@/app/(providers)/(root)/counseling/chat/chatTemplate";
-import Paragraph from "@/components/atoms/Paragraph";
 import Page from "@/components/Layouts/Page";
 import ChatBox from "@/components/molecules/ChatBox";
+import ChatDate from "@/components/molecules/ChatDate";
 import Header from "@/components/molecules/Header";
 import ChatInputBox from "@/components/organisms/ChatInputBox";
 import api from "@/services/service";
@@ -75,11 +75,7 @@ const ChatPage = () => {
             <>
               {isDateVisible && (
                 <div className={"w-full flex justify-center py-4"}>
-                  <div className="px-5 py-2 rounded-full inner-border-dark bg-background-normal">
-                    <Paragraph fontSize={"body2"} fontWeight={"medium"}>
-                      {date}
-                    </Paragraph>
-                  </div>
+                  <ChatDate>{date}</ChatDate>
                 </div>
               )}
               <ChatBox
@@ -105,13 +101,18 @@ const ChatPage = () => {
           </ChatBox>
         )}
       </div>
-      <div className="absolute w-full bottom-4 px-4">
+      <div className="absolute w-full bottom-4 px-4 z-20">
         <ChatInputBox
           onChange={onInputChange}
           onSubmit={onChatSubmit}
           value={chatInput}
         />
       </div>
+      <div
+        className={
+          "absolute bottom-0 z-10 w-full h-12 bg-gradient-to-t from-label-strong/50 to-label-strong/0"
+        }
+      ></div>
     </Page>
   );
 };

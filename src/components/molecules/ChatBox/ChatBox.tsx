@@ -1,4 +1,5 @@
 import Paragraph from "@/components/atoms/Paragraph/Paragraph";
+import ChatTime from "@/components/molecules/ChatTime";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 import { forwardRef, PropsWithChildren } from "react";
@@ -79,15 +80,7 @@ const ChatBox = forwardRef<HTMLElement, PropsWithChildren<ChatBoxProps>>(
             {children}
           </Paragraph>
         </div>
-        {isTimeVisible && (
-          <Paragraph
-            fontSize={"caption1"}
-            fontWeight={"medium"}
-            className={"text-label-neutral relative z-10 p-1"}
-          >
-            {time}
-          </Paragraph>
-        )}
+        {isTimeVisible && <ChatTime>{time}</ChatTime>}
       </div>
     );
   }
