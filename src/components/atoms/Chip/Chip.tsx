@@ -1,9 +1,9 @@
 import SVGIcon from "@/components/atoms/SVGIcon";
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
-import { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import { ButtonHTMLAttributes, PropsWithChildren, useState } from "react";
 
-const ChipVariants = cva("rounded-full ", {
+const ChipVariants = cva("rounded-full px-[12px] py-[6px]", {
   variants: {
     isActive: {
       true: "bg-primary-light text-primary-heavy border border-primary-heavy",
@@ -16,7 +16,7 @@ const ChipVariants = cva("rounded-full ", {
     },
   },
   defaultVariants: {
-    isActive: true,
+    isActive: false,
   },
 });
 
@@ -29,13 +29,19 @@ interface ChipProps
 const Chip = ({
   children,
   isIcon,
-  isActive,
   className,
   ...props
 }: PropsWithChildren<ChipProps>) => {
+  const [isActive, setIsActive] = useState<boolean>(false);
+
+  const handleClick = () => {
+    setIsActive((prev) => !prev);
+  };
+
   return (
     <button
       className={cn(ChipVariants({ isActive, isIcon, className }))}
+      onClick={handleClick}
       {...props}
     >
       {isIcon ? (
