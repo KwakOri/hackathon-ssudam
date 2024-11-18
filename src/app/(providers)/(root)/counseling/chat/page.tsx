@@ -9,13 +9,28 @@ import ChatInputBox from "@/components/organisms/ChatInputBox";
 import api from "@/services/service";
 import { ChatMessage } from "@/types/chat/chat.types";
 import { isSame } from "@/utils/format";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
+import { PulseLoader } from "react-spinners";
 
 const ChatPage = () => {
   const lastChatRef = useRef<HTMLDivElement>(null);
   const [chats, setChats] = useState<ChatMessage[]>([]);
   const [init, setInit] = useState<boolean>(false);
   const [chatInput, setChatInput] = useState<string>("");
+
+  const { data } = useQuery({
+    queryKey: ["getPrevChats"],
+    queryFn: () => api.counseling.getPrevChats(),
+  });
+
+  const { mutate, isPending } = useMutation({
+    mutationFn: (chat: string) => api.counseling.postChat(chat),
+    onSuccess: (data: ChatMessage) => {
+      setChats((prev) => [...prev, data]);
+    },
+  });
+
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setChatInput(e.currentTarget.value);
   };
@@ -24,6 +39,7 @@ const ChatPage = () => {
     const newChat = new UserChatRecord();
     console.log(newChat.toChatMessage(chatInput));
     setChats((prev) => [...prev, newChat.toChatMessage(chatInput)]);
+    mutate(chatInput);
     setChatInput("");
   };
 
@@ -78,6 +94,16 @@ const ChatPage = () => {
             </>
           );
         })}
+        {isPending && (
+          <ChatBox
+            isMine={false}
+            isTimeVisible={false}
+            time=""
+            lastChatRef={lastChatRef}
+          >
+            <PulseLoader speedMultiplier={0.5} size={8} color={"#B5B6BB"} />
+          </ChatBox>
+        )}
       </div>
       <div className="absolute w-full bottom-4 px-4">
         <ChatInputBox

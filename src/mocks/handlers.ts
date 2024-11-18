@@ -188,4 +188,21 @@ export const handlers = [
       },
     ]);
   }),
+
+  http.post(`${BASE_URL}/chat`, () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          HttpResponse.json({
+            id: Date.now(),
+            userId: 2,
+            message: "저런 그런 일이 있으셨군요",
+            sender: "assistant",
+            messageType: "normal",
+            createdAt: new Date().toISOString(),
+          })
+        );
+      }, 5000);
+    });
+  }),
 ];

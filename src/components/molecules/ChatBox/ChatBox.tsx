@@ -93,4 +93,7 @@ const ChatBox = forwardRef<HTMLElement, PropsWithChildren<ChatBoxProps>>(
   }
 );
 
+// Add display name for the component
+ChatBox.displayName = "ChatBox";
+
 export default ChatBox;

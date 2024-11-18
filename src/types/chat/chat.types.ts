@@ -12,3 +12,7 @@ export interface ChatMessage {
 export interface ChatResponse {
   data: ChatMessage[];
 }
+
+export interface ChatGPTResponse {
+  data: ChatMessage;
+}
