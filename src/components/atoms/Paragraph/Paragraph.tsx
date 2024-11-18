@@ -11,7 +11,7 @@ const ParagraphVariants = cva("text-label-strong", {
       heading2: "text-[18px] leading-[140%]",
       body1: "text-[16px] leading-[160%]",
       body2: "text-[14px] leading-[160%]",
-      label: "text-[15px] leading-[150%]",
+      label: "text-[14px] leading-[150%]",
       caption1: "text-[12px] leading-[130%]",
       caption2: "text-[10px] leading-[130%]",
     },
@@ -47,4 +47,4 @@ const Paragraph = ({
 
 export default Paragraph;
 
-<Paragraph></Paragraph>
+<Paragraph></Paragraph>;

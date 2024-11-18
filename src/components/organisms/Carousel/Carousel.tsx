@@ -70,10 +70,10 @@ const Carousel = ({ carouselItems }: CarouselProps) => {
 
     if (diffX > 50) {
       handleNext();
-      startX.current = null; // 초기화
+      startX.current = null;
     } else if (diffX < -50) {
       handlePrev();
-      startX.current = null; // 초기화
+      startX.current = null;
     }
   };
 
@@ -93,7 +93,6 @@ const Carousel = ({ carouselItems }: CarouselProps) => {
     setActiveIndex(index);
   };
 
-  // 각 슬라이드의 너비 정의
   const getSlideWidth = (item: CarouselItem) => {
     if (item.type === "image") return 343;
     if (item.type === "card") return 240;

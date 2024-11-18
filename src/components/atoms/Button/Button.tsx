@@ -18,7 +18,7 @@ const ButtonVariants = cva("", {
     size: {
       xl: "text-[18px] leading-[140%] font-semibold rounded-[16px] px-[33px] py-[15px]",
       lg: "text-[16px] leading-[160%] font-semibold rounded-[14px] px-[25px] py-[11px]",
-      md: "text-[15px] leading-[150%] font-semibold rounded-[10px] px-[19px] py-[8px]",
+      md: "text-[14px] leading-[150%] font-semibold rounded-[10px] px-[19px] py-[8px]",
       sm: "text-[12px] leading-[130%] font-semibold rounded-[8px] px-[15px] py-[6px]",
     },
   },

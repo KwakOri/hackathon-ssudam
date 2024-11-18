@@ -25,10 +25,10 @@ interface BadgeInfo {
 }
 
 interface CardListBoxProps extends PropsWithChildren {
-  title: string;
-  year: string;
-  month: string;
-  day: string;
+  title: string | null;
+  year?: string | null;
+  month?: string | null;
+  day?: string | null;
   isChecked: boolean;
   badges: BadgeInfo[];
   content: string;
@@ -46,13 +46,13 @@ const CardListBox = ({
   from,
 }: CardListBoxProps) => {
   return (
-    <div className="flex flex-col gap-1 w-[350px]">
+    <div className="flex flex-col gap-1 w-full">
       <CardListTitle
-        title={title}
-        year={year}
-        month={month}
-        day={day}
-        from={from}
+        title={title ?? ""}
+        year={year ?? ""}
+        month={month ?? ""}
+        day={day ?? ""}
+        from={from ?? ""}
         isChecked={isChecked}
       />
       <div className="flex gap-1">
@@ -65,7 +65,7 @@ const CardListBox = ({
       <Paragraph
         fontSize={"body2"}
         fontWeight={"medium"}
-        className={"text-label-normal overflow-hidden text-ellipsis"}
+        className="text-label-normal overflow-hidden line-clamp-1 text-ellipsis "
       >
         {content}
       </Paragraph>

@@ -83,7 +83,7 @@ const SelectInputBox = () => {
           </section>
           <section className={cn(SelectInputSectionProps({ isOpen }))}>
             {selectDummies.map((item) => (
-              <li key={item.value} className="list-none">
+              <li key={item.value} className="list-none ">
                 <SelectInput
                   value={item.value}
                   isSelected={item.value === selectedValue}
