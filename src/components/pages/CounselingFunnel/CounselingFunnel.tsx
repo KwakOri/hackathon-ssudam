@@ -9,19 +9,29 @@ import ChatFormalModeBox from "@/components/organisms/ChatModeBox/ChatFormalMode
 import ChatInformalModeBox from "@/components/organisms/ChatModeBox/ChatInformalModeBox";
 import FunnelPanel from "@/components/organisms/FunnelPanel";
 import CounselingFunnelStep from "@/components/templates/CounselingFunnelStep";
+import { useToast } from "@/contexts/Toast/Toast.context";
+import api from "@/services/service";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const CounselingFunnel = () => {
-  const user = { nickname: "누구누구님" };
+  const toast = useToast();
+  const navigate = useRouter();
   const steps: number = 5;
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(1);
   const notices = [
+    "",
     "안내를 읽고 동의해주세요",
     "대화 상대를 선택해주세요",
     "대화 상대를 선택해주세요",
     "호칭을 선택해주세요",
     "모드를 선택해주세요",
   ];
+
+  const [mode, setMode] = useState<"formal" | "informal" | null>(null);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
+  const [name, setName] = useState<string>("");
+
   const onNextPage = () => {
     setStep((prev) => prev + 1);
   };
@@ -33,15 +43,24 @@ const CounselingFunnel = () => {
         title={notices[step]}
         intent={"counseling"}
       />
-      {step === 0 && (
-        <CounselingFunnelStep onNext={() => onNextPage()}>
+      {step === 1 && (
+        <CounselingFunnelStep
+          onNext={() => {
+            if (!isChecked)
+              return toast.add({
+                content: "모든 항목에 동의해주세요",
+                intent: "warning",
+              });
+            onNextPage();
+          }}
+        >
           <div className={"flex flex-col gap-4"}>
             <Paragraph
               fontSize={"label"}
               fontWeight={"semibold"}
               className="text-label-strong"
             >
-              지역을 선택해주세요
+              안내를 읽고 동의해주세요.
             </Paragraph>
 
             <Paragraph
@@ -73,8 +92,8 @@ const CounselingFunnel = () => {
             <CheckInput
               size="md"
               type="checkbox"
-              checked={true}
-              onChange={(e) => console.log(e)}
+              checked={isChecked}
+              onChange={setIsChecked}
             >
               <Paragraph
                 fontSize={"caption1"}
@@ -88,7 +107,7 @@ const CounselingFunnel = () => {
         </CounselingFunnelStep>
       )}
 
-      {step === 1 && (
+      {step === 2 && (
         <CounselingFunnelStep onNext={() => onNextPage()}>
           <div className="flex flex-col gap-4 p-4 bg-background-normal rounded-[18px] relative">
             <Border className={"rounded-[18px]"} />
@@ -119,7 +138,7 @@ const CounselingFunnel = () => {
         </CounselingFunnelStep>
       )}
 
-      {step === 2 && (
+      {step === 3 && (
         <CounselingFunnelStep onNext={() => onNextPage()}>
           <div className="flex flex-col gap-4 p-4 bg-background-normal rounded-[18px] relative">
             <Border className={"rounded-[18px]"} />
@@ -150,10 +169,18 @@ const CounselingFunnel = () => {
         </CounselingFunnelStep>
       )}
 
-      {step === 3 && (
-        <CounselingFunnelStep onNext={() => onNextPage()}>
-          <div className="flex flex-col gap-4 p-4 bg-background-normal rounded-[18px] relative">
-            <Border className={"rounded-[18px]"} />
+      {step === 4 && (
+        <CounselingFunnelStep
+          onNext={() => {
+            // if (!name)
+            //   return toast.add({
+            //     content: "호칭을 정해주세요",
+            //     intent: "warning",
+            //   });
+            onNextPage();
+          }}
+        >
+          <div className="flex flex-col gap-4 p-4 bg-background-normal rounded-[18px] relative inner-border-dark">
             <Paragraph
               fontSize={"heading2"}
               fontWeight={"semibold"}
@@ -162,6 +189,8 @@ const CounselingFunnel = () => {
               어떻게 불러드릴까요?
             </Paragraph>
             <Textfield
+              value={name}
+              onChange={(e) => setName(e.currentTarget.value)}
               label={"더욱 가깝고 친근하게 불러드릴게요."}
               placeholder={"호칭을 입력해주세요"}
               helperMessage={"불쾌..."}
@@ -170,17 +199,44 @@ const CounselingFunnel = () => {
         </CounselingFunnelStep>
       )}
 
-      {step === 4 && (
-        <CounselingFunnelStep onNext={() => onNextPage()}>
+      {step === 5 && (
+        <CounselingFunnelStep
+          onNext={async () => {
+            if (!mode)
+              return toast.add({
+                content: "모드를 정해주세요",
+                intent: "warning",
+              });
+            await api.counseling.postChat(
+              "안녕! 반가워!",
+              mode === "formal" ? true : false
+            );
+            navigate.push("/counseling/chat");
+          }}
+        >
           <div className={"flex flex-col gap-8"}>
             <div>
               <ChatBox isMine={true}>많이 힘들었어요</ChatBox>
-              <ChatBox isMine={false}>{user.nickname}! 오늘은 어땠어?</ChatBox>
+              <ChatBox isMine={false}>{name}! 오늘은 어땠어?</ChatBox>
               <ChatBox isMine={false}>무슨 고민 있으세요?</ChatBox>
             </div>
             <div className={"w-full flex gap-3"}>
-              <ChatInformalModeBox />
-              <ChatFormalModeBox />
+              <div
+                className={`${
+                  mode === "informal" ? "opacity-100" : "opacity-50"
+                } scale-100 transition-all hover:scale-105`}
+                onClick={() => setMode("informal")}
+              >
+                <ChatInformalModeBox />
+              </div>
+              <div
+                className={`${
+                  mode === "formal" ? "opacity-100" : "opacity-50"
+                } scale-100 transition-all hover:scale-105`}
+                onClick={() => setMode("formal")}
+              >
+                <ChatFormalModeBox />
+              </div>
             </div>
           </div>
         </CounselingFunnelStep>

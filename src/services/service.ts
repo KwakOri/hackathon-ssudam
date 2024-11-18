@@ -2,25 +2,41 @@ import AuthAPI from "@/services/auth/auth.service";
 import CounselingAPI from "@/services/counseling/counseling.service";
 import axios, { AxiosInstance } from "axios";
 
-// export const BASE_URL = "https://b6f2-220-88-76-114.ngrok-free.app";
-
-// const client = axios.create({
-//   baseURL: BASE_URL,
-//   headers: {
-//     "Content-Type": "application/json",
-//     "Access-Control-Allow-Credentials": true,
-//     "ngrok-skip-browser-warning": true,
-//   },
-// });
-
-export const BASE_URL = "http://localhost:8080";
+export const BASE_URL = "https://e10c-220-88-76-114.ngrok-free.app";
 
 const client = axios.create({
   baseURL: BASE_URL,
   headers: {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Credentials": true,
+    "ngrok-skip-browser-warning": true,
   },
 });
+
+// client.interceptors.request.use(
+//   (config) => {
+//     if (!config.headers) return config;
+
+//     const accessToken = localStorage.getItem("ACCESS_TOKEN");
+//     if (!accessToken) return config;
+
+//     config.headers.Authorization = `Bearer ${accessToken}`;
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
+
+// export const BASE_URL = "http://localhost:8080";
+
+// const client = axios.create({
+//   baseURL: BASE_URL,
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   withCredentials: true,
+// });
 
 class API {
   private client: AxiosInstance;

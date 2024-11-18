@@ -12,6 +12,8 @@ interface ITextfieldProps extends InputHTMLAttributes<HTMLInputElement> {
   buttonLabel?: string;
   buttonOnClick?: () => void;
   IsInputDelButton?: boolean;
+  isValid?: boolean;
+  errorMessage?: string;
 }
 
 const Textfield = ({
@@ -21,8 +23,10 @@ const Textfield = ({
   helperMessage,
   validationOption,
   buttonOnClick,
+  errorMessage,
   buttonLabel = "",
   IsInputDelButton = false,
+  isValid = false,
   ...props
 }: ITextfieldProps) => {
   return (
@@ -31,14 +35,18 @@ const Textfield = ({
         <Paragraph
           fontSize={"body2"}
           fontWeight={"medium"}
-          className="text-label-normal"
+          className={`${
+            isValid ? "text-label-normal" : "text-accent-red-normal"
+          } `}
         >
           {label}
         </Paragraph>
         <Paragraph
           fontSize={"caption1"}
           fontWeight={"medium"}
-          className="text-label-alternative"
+          className={`${
+            isValid ? "text-label-alternative" : "text-accent-red-normal"
+          } `}
         >
           {caption}
         </Paragraph>
@@ -74,7 +82,16 @@ const Textfield = ({
           </Button>
         )}
       </div>
-      {helperMessage ? (
+
+      {!isValid && errorMessage ? (
+        <Paragraph
+          fontSize={"caption1"}
+          fontWeight={"medium"}
+          className={"text-accent-red-normal"}
+        >
+          {errorMessage}
+        </Paragraph>
+      ) : helperMessage ? (
         <Paragraph
           fontSize={"caption1"}
           fontWeight={"medium"}
