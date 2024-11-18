@@ -164,6 +164,10 @@ const config: Config = {
         ".inner-border-dark": {
           "box-shadow": "0px 0px 0px 1px inset rgba(84, 98, 140, 0.16)",
         },
+        "gradient-black": {
+          background:
+            "linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)",
+        },
         ".text-balance": {
           "text-wrap": "balance",
         },
