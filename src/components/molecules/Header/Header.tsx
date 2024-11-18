@@ -12,7 +12,8 @@ interface HeaderProps {
     | "labelWithMenuIcon"
     | "label"
     | "labelWithCloseIcon"
-    | "labelWithBackIcon";
+    | "labelWithBackIcon"
+    | "labelWithResetIcon";
   title?: string;
   leftIconOnClink?: () => void;
   rightIconOnClink?: () => void;
@@ -50,6 +51,20 @@ const Header = ({
           </div>
           <button onClick={() => sidebar.open()}>
             <SVGIcon icon={"Menu"} />
+          </button>
+        </>
+      )}
+
+      {intent === "labelWithResetIcon" && (
+        <>
+          <button>
+            <SVGIcon icon={"ArrowLeft"} />
+          </button>
+          <div className="flex gap-2">
+            <Paragraph>{title}</Paragraph>
+          </div>
+          <button>
+            <SVGIcon icon={"Reset"} />
           </button>
         </>
       )}

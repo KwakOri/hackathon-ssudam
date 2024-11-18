@@ -26,9 +26,9 @@ interface BadgeInfo {
 
 interface CardListBoxProps extends PropsWithChildren {
   title: string | null;
-  year: string | null;
-  month: string | null;
-  day: string | null;
+  year?: string | null;
+  month?: string | null;
+  day?: string | null;
   isChecked: boolean;
   badges: BadgeInfo[];
   content: string;
@@ -65,7 +65,7 @@ const CardListBox = ({
       <Paragraph
         fontSize={"body2"}
         fontWeight={"medium"}
-        className={"text-label-normal overflow-hidden text-ellipsis"}
+        className="text-label-normal overflow-hidden line-clamp-1 text-ellipsis "
       >
         {content}
       </Paragraph>

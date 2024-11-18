@@ -9,9 +9,54 @@ import Section from "@/components/Layouts/Section/Section";
 import Carousel from "@/components/organisms/Carousel";
 import CardListBox from "@/components/organisms/CardListBox";
 
+const cardData = [
+  {
+    title: "Title 1",
+    isChecked: false,
+    badges: [
+      { content: "Label 1", intent: "gray_light" },
+      { content: "Label 2", intent: "gray_light" },
+    ],
+    content:
+      "여성가족부에서 새롭게 실시하는 청소년 미혼모 자립 지원 제도에 대한 설명입니다.",
+    from: "여성가족부",
+  },
+  {
+    title: "Title 2",
+    isChecked: false,
+    badges: [
+      { content: "Label 1", intent: "gray_light" },
+      { content: "Label 2", intent: "gray_light" },
+    ],
+    content:
+      "여성가족부에서 새롭게 실시하는 청소년 미혼모 자립 지원 제도에 대한 설명입니다.",
+    from: "여성가족부",
+  },
+];
+interface BadgeInfo {
+  content: React.ReactNode;
+  intent:
+    | "primary"
+    | "primary_light"
+    | "purple"
+    | "purple_light"
+    | "brown"
+    | "brown_light"
+    | "yellow"
+    | "yellow_light"
+    | "red"
+    | "red_light"
+    | "green"
+    | "green_light"
+    | "blue"
+    | "blue_light"
+    | "gray"
+    | "gray_light";
+} //추후 mck데이터에 넣을 예정
+
 export default function InformationPage() {
   return (
-    <Page className="flex flex-col gap-4">
+    <Page className="flex flex-col gap-4 overflow-y-scroll">
       <Header intent="main" />
       <Section>
         <Carousel
@@ -51,20 +96,21 @@ export default function InformationPage() {
         </div>
         <Divider intent={"horizontal"} />
       </Section>
-      <Section className="flex flex-col gap-2 justify-center items-center mx-4">
-        <CardListBox
-          title="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle"
-          year="2024"
-          month="05"
-          day="10"
-          isChecked={false}
-          badges={[
-            { content: "Label 1", intent: "gray" },
-            { content: "Label 2", intent: "gray" },
-          ]}
-          content="여성가족부에서 새롭게 실시하는 청소년 미혼모 자립 지원 제도에 대한 설명입니다."
-          from="여성가족부"
-        />
+      <Section className="flex flex-col justify-center items-center mx-4 ">
+        {cardData.map((card, index) => (
+          <div key={index}>
+            <CardListBox
+              title={card.title}
+              isChecked={card.isChecked}
+              badges={card.badges as BadgeInfo[]}
+              content={card.content}
+              from={card.from}
+            />
+            <div className="mt-2">
+              <Divider intent={"horizontal"} />
+            </div>
+          </div>
+        ))}
       </Section>
     </Page>
   );

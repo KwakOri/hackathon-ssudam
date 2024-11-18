@@ -15,9 +15,9 @@ const CardListTitleVariants = cva("", {
 interface CardListTitleProps
   extends VariantProps<typeof CardListTitleVariants> {
   title: string;
-  year: string;
-  month: string;
-  day: string;
+  year?: string | null;
+  month?: string | null;
+  day?: string | null;
   from: string;
   initialChecked?: boolean;
 }
@@ -46,20 +46,22 @@ const CardListTitle = ({
         >
           {from}
         </Paragraph>
-        <Paragraph
-          fontSize={"caption1"}
-          fontWeight={"medium"}
-          className={"text-label-neutral"}
-        >
-          {year}/{month}/{day}
-        </Paragraph>
+        {year && month && day && (
+          <Paragraph
+            fontSize={"caption1"}
+            fontWeight={"medium"}
+            className={"text-label-neutral"}
+          >
+            {year}/{month}/{day}
+          </Paragraph>
+        )}
       </div>
       <div className="flex justify-between items-center">
         <Paragraph
           fontSize={"body2"}
           fontWeight={"semibold"}
           className={
-            "text-label-strong overflow-hidden whitespace-nowrap text-ellipsis"
+            "text-label-strong overflow-hidden line-clamp-1 text-ellipsis"
           }
         >
           {title}
