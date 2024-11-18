@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import SignupPages from "@/components/pages/SignupPages";
+import SignupFunnel from "@/components/pages/SignupFunnel";
 
 const meta = {
-  title: "Pages/SignupPages",
-  component: SignupPages,
+  title: "Pages/SignupFunnel",
+  component: SignupFunnel,
   parameters: {
     layout: "centered",
   },
@@ -28,7 +28,7 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof SignupPages>;
+} satisfies Meta<typeof SignupFunnel>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

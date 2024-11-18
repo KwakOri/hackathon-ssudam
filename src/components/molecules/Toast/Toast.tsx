@@ -1,21 +1,80 @@
-import CancelSVG from "@/assets/modal/cancel.svg";
-import ToastAlertSVG from "@/assets/toast/toast-alert.svg";
+"use client";
+
+import Paragraph from "@/components/atoms/Paragraph";
+import SVGIcon from "@/components/atoms/SVGIcon";
 import { useToast } from "@/contexts/Toast/Toast.context";
 
-import { ToastTypes } from "@/types/toast";
+import { cn } from "@/utils/cn";
+import { cva, VariantProps } from "class-variance-authority";
 import { useEffect, useState } from "react";
 
-export const Toast = ({ content, id }: ToastTypes) => {
+const toastVariants = cva(
+  "transition-all duration-300 rounded-2xl w-full p-4 flex gap-3",
+  {
+    variants: {
+      intent: {
+        normal: "bg-dimmer-normal",
+        strong: "bg-dimmer-strong",
+        accept: "bg-dimmer-strong border border-accent-green-normal",
+        warning: "bg-dimmer-strong border border-accent-red-normal",
+      },
+      status: {
+        await: "-translate-y-[120%] opacity-0",
+        exit: "translate-y-[120%] opacity-0",
+        enter: " translate-y-0 opacity-100",
+      },
+    },
+    defaultVariants: {
+      intent: "normal",
+    },
+  }
+);
+
+const toastIconVariants = cva("", {
+  variants: {
+    intent: {
+      normal: "fill-static-white",
+      strong: "fill-static-white",
+      accept: "fill-accent-green-normal",
+      warning: "fill-accent-red-normal",
+    },
+  },
+  defaultVariants: {
+    intent: "normal",
+  },
+});
+
+const toastTextVariants = cva("", {
+  variants: {
+    intent: {
+      normal: "text-static-white",
+      strong: "text-static-white",
+      accept: "text-accent-green-normal",
+      warning: "text-accent-red-normal",
+    },
+  },
+  defaultVariants: {
+    intent: "normal",
+  },
+});
+
+export interface ToastTypes extends VariantProps<typeof toastVariants> {
+  id: string;
+  content: string;
+  className?: string;
+}
+
+const Toast = ({ content, id, intent, className }: ToastTypes) => {
   const TOAST_TRANSITION = 500;
-  const TOAST_DURATION = 20000;
+  const TOAST_DURATION = 5000;
   const toast = useToast();
-  const [show, setShow] = useState(false);
+  const [status, setStatus] = useState<"await" | "enter" | "exit">("await");
   let timer: ReturnType<typeof setTimeout>;
 
   const deleteToast = (time: number): Promise<void> =>
     new Promise<void>((resolve) => {
       timer = setTimeout(() => {
-        setShow(false);
+        setStatus("exit");
         resolve();
       }, +time);
     }).then(() => {
@@ -24,32 +83,36 @@ export const Toast = ({ content, id }: ToastTypes) => {
       }, TOAST_TRANSITION);
     });
 
+  const onClickToast = () => {
+    clearInterval(timer);
+    deleteToast(0);
+  };
+
   useEffect(() => {
-    setShow(true);
+    setStatus("enter");
     deleteToast(+TOAST_DURATION);
   }, []);
 
   return (
-    <div
-      className={`z-50 relative flex justify-between gap-2 items-center mt-4 transition-all duration-500 w-[334px] h-[40px] pl-2 pr-4 rounded-2xl text-white toast-bg ${
-        show ? "translate-x-0" : "translate-x-[400px]"
-      }`}
-    >
-      <ToastAlertSVG />
-      <div className="z-50 w-full flex justify-between items-center">
-        <p className="text-ellipsis">{content}</p>
-
-        <button
-          onClick={() => {
-            clearInterval(timer);
-            deleteToast(0);
-          }}
-          className=""
+    <>
+      <div
+        className={cn(toastVariants({ intent, status, className }))}
+        onClick={onClickToast}
+      >
+        <SVGIcon
+          icon={"Success"}
+          className={cn(toastIconVariants({ intent }))}
+        />
+        <Paragraph
+          fontSize={"heading2"}
+          fontWeight={"medium"}
+          className={cn(toastTextVariants({ intent }))}
         >
-          <CancelSVG />
-        </button>
+          {content}
+        </Paragraph>
       </div>
-      <div className="border-white/30 border rounded-xl absolute inset-0 z-40 "></div>
-    </div>
+    </>
   );
 };
+
+export default Toast;

@@ -1,7 +1,7 @@
 import { cn } from "@/utils/cn";
 import { cva, VariantProps } from "class-variance-authority";
 
-const BorderVariants = cva("absolute inset-0 border", {
+const BorderVariants = cva("absolute inset-0 border rounded-[18px]", {
   variants: {
     intent: {
       redFill: "border-accent-red-light",

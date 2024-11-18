@@ -9,9 +9,12 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_89f8c46e803b4e9"
+    "chromatic": "npx chromatic --project-token=chpt_89f8c46e803b4e9",
+    "mock": "npx tsx watch ./src/mocks/mockServer.ts"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.60.5",
+    "@tanstack/react-query-devtools": "^5.60.5",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -20,12 +23,15 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.2",
+    "react-spinners": "^0.14.1",
     "swiper": "^11.1.14",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "uuid": "^11.0.3"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@chromatic-com/storybook": "^3.2.2",
+    "@mswjs/http-middleware": "^0.10.2",
     "@storybook/addon-essentials": "^8.4.2",
     "@storybook/addon-interactions": "^8.4.2",
     "@storybook/addon-onboarding": "^8.4.2",
@@ -34,10 +40,14 @@
     "@storybook/react": "^8.4.2",
     "@storybook/test": "^8.4.2",
     "@svgr/webpack": "^8.1.0",
+    "@tanstack/eslint-plugin-query": "^5.60.1",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "chromatic": "^11.18.0",
+    "cors": "^2.8.5",
     "eslint": "^8",
     "eslint-config-next": "14.2.17",
     "eslint-plugin-storybook": "^0.11.0",

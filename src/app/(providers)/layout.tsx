@@ -1,15 +1,18 @@
 "use client";
 
+import ReactQueryProvider from "@/app/(providers)/_providers/ReactQueryProvider";
 import { SidebarProvider } from "@/contexts/Sidebar/Sidebar.context";
-import { MSWComponent } from "@/mocks/MSWComponent";
+import { ToastProvider } from "@/contexts/Toast/Toast.context";
 import { PropsWithChildren } from "react";
 
 const ProviderLayout = ({ children }: PropsWithChildren) => {
   return (
     <>
-      <MSWComponent>
-        <SidebarProvider>{children}</SidebarProvider>
-      </MSWComponent>
+      <ReactQueryProvider>
+        <SidebarProvider>
+          <ToastProvider>{children}</ToastProvider>
+        </SidebarProvider>
+      </ReactQueryProvider>
     </>
   );
 };

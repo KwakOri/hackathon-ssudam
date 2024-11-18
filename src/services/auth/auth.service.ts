@@ -25,10 +25,10 @@ class AuthAPI {
     return res.data;
   }
 
-  // async logIn(data: TAuthData) {
-  //   const response = await this.client.post("/auth/log-in", data);
-  //   return response.data;
-  // }
+  async logIn(data: { email: string; password: string }) {
+    const response = await this.client.post("/auth/log-in", data);
+    return response.data;
+  }
 }
 
 export default AuthAPI;
