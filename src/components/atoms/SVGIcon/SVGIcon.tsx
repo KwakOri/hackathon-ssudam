@@ -18,7 +18,7 @@ const SVGIconVariants = cva("fill-label-neutral", {
   variants: {
     icon: {
       ...IconVariants,
-      StarLine: "stroke-label-neutral fill-none",
+
       StarFill: "fill-primary-strong",
       FilterFill: "fill-primary-strong",
     },
