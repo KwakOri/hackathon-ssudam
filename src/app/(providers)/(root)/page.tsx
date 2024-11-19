@@ -1,28 +1,18 @@
 "use client";
 
-import MockPage from "/public/images/mock/mock_main.png";
-
-import Page from "@/components/Layouts/Page";
+import Page from "@/components/Layouts/Page/Page";
+import Section from "@/components/Layouts/Section/Section";
 import Header from "@/components/molecules/Header";
-import Image from "next/image";
-
-// import Page from "@/components/Layouts/Page/Page";
-// import Section from "@/components/Layouts/Section/Section";
-// import Header from "@/components/molecules/Header";
-// import SectionTitle from "@/components/molecules/SectionTitle";
-// import Carousel from "@/components/organisms/Carousel";
-// import ChatFormalModeBox from "@/components/organisms/ChatModeBox/ChatFormalModeBox";
-// import ChatInformalModeBox from "@/components/organisms/ChatModeBox/ChatInformalModeBox";
+import SectionTitle from "@/components/molecules/SectionTitle";
+import Carousel from "@/components/organisms/Carousel";
+import ChatFormalModeBox from "@/components/organisms/ChatModeBox/ChatFormalModeBox";
+import ChatInformalModeBox from "@/components/organisms/ChatModeBox/ChatInformalModeBox";
 
 export default function HomePage() {
   return (
     <Page>
       <Header intent="main"></Header>
-      <div className={"relative w-full grow overflow-y-scroll"}>
-        <Image src={MockPage} alt="mock" />
-      </div>
-
-      {/* <div className="grow flex flex-col gap-4 overflow-y-scroll py-4">
+      <div className="grow flex flex-col gap-4 overflow-y-scroll py-4">
         <Section>
           <SectionTitle>AI 심리상담</SectionTitle>
           <div className={"w-full flex gap-3 px-4"}>
@@ -138,7 +128,7 @@ export default function HomePage() {
             ]}
           />
         </Section>
-      </div> */}
+      </div>
     </Page>
   );
 }

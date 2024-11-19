@@ -6,6 +6,8 @@ import ChatBox from "@/components/molecules/ChatBox";
 import ChatDate from "@/components/molecules/ChatDate";
 import Header from "@/components/molecules/Header";
 import ChatInputBox from "@/components/organisms/ChatInputBox";
+import ChatNoticeBox from "@/components/organisms/ChatNoticeBox/ChatNoticeBox";
+import ChatPlaceBox from "@/components/organisms/ChatPlaceBox";
 import api from "@/services/service";
 import { ChatMessage } from "@/types/chat/chat.types";
 import { isSame } from "@/utils/format";
@@ -91,6 +93,42 @@ const ChatPage = () => {
               >
                 {chat.message}
               </ChatBox>
+              {chat.messageType === "relatedToSuicide" && (
+                <div className="flex flex-col gap-4">
+                  <ChatNoticeBox
+                    title="혹시 위험한 상황에 처해 있으신가요?"
+                    contents={[
+                      "쓰담이님은 혼자가 아니에요.",
+                      "아래 버튼만 누르면, 24시 긴급전화와 연결돼요.",
+                    ]}
+                    intent={"redFill"}
+                    buttonLabel="전화 걸기"
+                  />
+                  <div className={"flex gap-2 flex-nowrap"}>
+                    <ChatPlaceBox
+                      category="지원센터"
+                      href="#
+                    "
+                      location="807m"
+                      title="서울시 정신건강..."
+                    />
+                    <ChatPlaceBox
+                      category="의료기관"
+                      href="#
+                    "
+                      location="1.2km"
+                      title="한마음병원"
+                    />
+                    <ChatPlaceBox
+                      category="의료기관"
+                      href="#
+                    "
+                      location="1.2km"
+                      title="한마음병원"
+                    />
+                  </div>
+                </div>
+              )}
             </>
           );
         })}

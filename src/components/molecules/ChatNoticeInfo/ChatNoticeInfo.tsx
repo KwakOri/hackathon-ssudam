@@ -36,10 +36,10 @@ const ChatNoticeInfoCloseIconVariants = cva("", {
 interface ChatNoticeInfoProps
   extends VariantProps<typeof ChatNoticeInfoTitleVariants> {
   title: string;
-  content: string;
+  contents: string[];
 }
 
-const ChatNoticeInfo = ({ title, content, intent }: ChatNoticeInfoProps) => {
+const ChatNoticeInfo = ({ title, contents, intent }: ChatNoticeInfoProps) => {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-between items-center">
@@ -58,13 +58,16 @@ const ChatNoticeInfo = ({ title, content, intent }: ChatNoticeInfoProps) => {
           />
         </button>
       </div>
-      <Paragraph
-        fontSize={"caption1"}
-        fontWeight={"medium"}
-        className={cn(ChatNoticeInfoContentVariants({ intent }))}
-      >
-        {content}
-      </Paragraph>
+      {contents.map((content) => (
+        <Paragraph
+          key={content}
+          fontSize={"caption1"}
+          fontWeight={"medium"}
+          className={cn(ChatNoticeInfoContentVariants({ intent }))}
+        >
+          {content}
+        </Paragraph>
+      ))}
     </div>
   );
 };

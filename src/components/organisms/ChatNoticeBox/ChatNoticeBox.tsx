@@ -23,16 +23,22 @@ export const ChatNoticeInfoWrapperVariants = cva(
 interface ChatNoticeInfoProps
   extends VariantProps<typeof ChatNoticeInfoWrapperVariants> {
   title: string;
-  content: string;
+  contents: string[];
+  buttonLabel: string;
 }
 
-const ChatNoticeBox = ({ title, content, intent }: ChatNoticeInfoProps) => {
+const ChatNoticeBox = ({
+  title,
+  contents,
+  intent,
+  buttonLabel,
+}: ChatNoticeInfoProps) => {
   return (
     <article className={cn(ChatNoticeInfoWrapperVariants({ intent }))}>
       <Border intent={intent} className={"rounded-[18px]"} />
-      <ChatNoticeInfo title={title} content={content} intent={intent} />
+      <ChatNoticeInfo title={title} contents={contents} intent={intent} />
       <Button intent={intent} size={"md"} className="w-full">
-        Label
+        {buttonLabel}
       </Button>
     </article>
   );

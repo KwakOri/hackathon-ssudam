@@ -26,187 +26,227 @@ export const handlers = [
   http.get(`${BASE_URL}/chat/chat-user-list`, () => {
     return HttpResponse.json({
       data: [
-        {
-          id: 83,
-          userId: 2,
-          message: "부산에 사는데 지원금 정보 좀 알려줘",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-14T10:22:17.823Z",
-        },
-        {
-          id: 84,
-          userId: 2,
-          message: "경기도에서 받을 수 있는 혜택은 뭐야?",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-14T10:22:40.432Z",
-        },
-        {
-          id: 85,
-          userId: 2,
-          message: "정부 지원금을 찾고 있어요",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-14T10:23:02.539Z",
-        },
-        {
-          id: 86,
-          userId: 2,
-          message: "어떤 지원금이 있는지 알려줄 수 있어?",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-14T10:23:18.394Z",
-        },
-        {
-          id: 87,
-          userId: 2,
-          message: "안녕하세요! 궁금한 게 있어서요.",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-15T10:23:35.782Z",
-        },
-        {
-          id: 88,
-          userId: 2,
-          message: "안녕하세요! 무엇을 도와드릴까요?",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-15T10:23:40.902Z",
-        },
-        {
-          id: 89,
-          userId: 2,
-          message: "서울에서 받을 수 있는 지원금 알려주세요",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-15T10:24:01.210Z",
-        },
-        {
-          id: 90,
-          userId: 2,
-          message: "안녕하세요! 지원금 관련해서 어떤 정보를 찾고 계신가요?",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-15T10:24:05.972Z",
-        },
-        {
-          id: 91,
-          userId: 2,
-          message: "대구에 사는데 지원 받을 수 있는 게 있나요?",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-15T10:24:17.849Z",
-        },
-        {
-          id: 92,
-          userId: 2,
-          message: "지원금을 찾고 있는 중이신가요? 도움을 드릴게요.",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:24:21.395Z",
-        },
-        {
-          id: 93,
-          userId: 2,
-          message: "지원금 신청 방법을 알고 싶어요.",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:24:29.678Z",
-        },
-        {
-          id: 94,
-          userId: 2,
-          message: "안녕하세요! 어떤 종류의 지원금을 찾고 계신가요?",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:24:33.410Z",
-        },
-        {
-          id: 95,
-          userId: 2,
-          message: "혼자서 아이 키우고 있는데 도움 받을 수 있는 게 있을까요?",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:24:45.512Z",
-        },
-        {
-          id: 96,
-          userId: 2,
-          message:
-            "안녕하세요, 지원이 필요하신 부분을 자세히 알려주시면 도와드릴게요.",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:24:48.213Z",
-        },
-        {
-          id: 97,
-          userId: 2,
-          message: "지원금 받을 수 있는 조건이 뭔가요?",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:25:02.654Z",
-        },
-        {
-          id: 98,
-          userId: 2,
-          message: "기본 지원금 조건을 안내해 드릴까요?",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:25:05.893Z",
-        },
-        {
-          id: 99,
-          userId: 2,
-          message: "현재 받을 수 있는 지원금이 궁금해요.",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:25:15.273Z",
-        },
-        {
-          id: 100,
-          userId: 2,
-          message: "어떤 도움이 필요한지 알려주시면 지원금을 안내해드릴게요.",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:25:20.816Z",
-        },
-        {
-          id: 101,
-          userId: 2,
-          message: "지원금 신청 서류가 궁금해요.",
-          role: "user",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:25:35.412Z",
-        },
-        {
-          id: 102,
-          userId: 2,
-          message: "필요한 서류들을 안내해 드릴게요. 잠시만 기다려 주세요.",
-          role: "assistant",
-          messageType: "normal",
-          createdAt: "2024-11-16T10:25:38.901Z",
-        },
+        // {
+        //   id: 83,
+        //   userId: 2,
+        //   message: "부산에 사는데 지원금 정보 좀 알려줘",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-14T10:22:17.823Z",
+        // },
+        // {
+        //   id: 84,
+        //   userId: 2,
+        //   message: "경기도에서 받을 수 있는 혜택은 뭐야?",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-14T10:22:40.432Z",
+        // },
+        // {
+        //   id: 85,
+        //   userId: 2,
+        //   message: "정부 지원금을 찾고 있어요",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-14T10:23:02.539Z",
+        // },
+        // {
+        //   id: 86,
+        //   userId: 2,
+        //   message: "어떤 지원금이 있는지 알려줄 수 있어?",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-14T10:23:18.394Z",
+        // },
+        // {
+        //   id: 87,
+        //   userId: 2,
+        //   message: "안녕하세요! 궁금한 게 있어서요.",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-15T10:23:35.782Z",
+        // },
+        // {
+        //   id: 88,
+        //   userId: 2,
+        //   message: "안녕하세요! 무엇을 도와드릴까요?",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-15T10:23:40.902Z",
+        // },
+        // {
+        //   id: 89,
+        //   userId: 2,
+        //   message: "서울에서 받을 수 있는 지원금 알려주세요",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-15T10:24:01.210Z",
+        // },
+        // {
+        //   id: 90,
+        //   userId: 2,
+        //   message: "안녕하세요! 지원금 관련해서 어떤 정보를 찾고 계신가요?",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-15T10:24:05.972Z",
+        // },
+        // {
+        //   id: 91,
+        //   userId: 2,
+        //   message: "대구에 사는데 지원 받을 수 있는 게 있나요?",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-15T10:24:17.849Z",
+        // },
+        // {
+        //   id: 92,
+        //   userId: 2,
+        //   message: "지원금을 찾고 있는 중이신가요? 도움을 드릴게요.",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:24:21.395Z",
+        // },
+        // {
+        //   id: 93,
+        //   userId: 2,
+        //   message: "지원금 신청 방법을 알고 싶어요.",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:24:29.678Z",
+        // },
+        // {
+        //   id: 94,
+        //   userId: 2,
+        //   message: "안녕하세요! 어떤 종류의 지원금을 찾고 계신가요?",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:24:33.410Z",
+        // },
+        // {
+        //   id: 95,
+        //   userId: 2,
+        //   message: "혼자서 아이 키우고 있는데 도움 받을 수 있는 게 있을까요?",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:24:45.512Z",
+        // },
+        // {
+        //   id: 96,
+        //   userId: 2,
+        //   message:
+        //     "안녕하세요, 지원이 필요하신 부분을 자세히 알려주시면 도와드릴게요.",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:24:48.213Z",
+        // },
+        // {
+        //   id: 97,
+        //   userId: 2,
+        //   message: "지원금 받을 수 있는 조건이 뭔가요?",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:25:02.654Z",
+        // },
+        // {
+        //   id: 98,
+        //   userId: 2,
+        //   message: "기본 지원금 조건을 안내해 드릴까요?",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:25:05.893Z",
+        // },
+        // {
+        //   id: 99,
+        //   userId: 2,
+        //   message: "현재 받을 수 있는 지원금이 궁금해요.",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:25:15.273Z",
+        // },
+        // {
+        //   id: 100,
+        //   userId: 2,
+        //   message: "어떤 도움이 필요한지 알려주시면 지원금을 안내해드릴게요.",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:25:20.816Z",
+        // },
+        // {
+        //   id: 101,
+        //   userId: 2,
+        //   message: "지원금 신청 서류가 궁금해요.",
+        //   role: "user",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:25:35.412Z",
+        // },
+        // {
+        //   id: 102,
+        //   userId: 2,
+        //   message: "필요한 서류들을 안내해 드릴게요. 잠시만 기다려 주세요.",
+        //   role: "assistant",
+        //   messageType: "normal",
+        //   createdAt: "2024-11-16T10:25:38.901Z",
+        // },
       ],
     });
   }),
 
-  http.post(`${BASE_URL}/chat`, () => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(
-          HttpResponse.json({
-            data: {
-              id: Date.now(),
-              userId: 2,
-              message: "저런 그런 일이 있으셨군요",
-              role: "assistant",
-              messageType: "normal",
-              createdAt: new Date().toISOString(),
-            },
-          })
-        );
-      }, 30000);
-    });
+  http.post(`${BASE_URL}/chat`, async ({ request }) => {
+    const body = await request.json();
+    if (!body || typeof body !== "object") return;
+    const chat = (body as { message: string }).message;
+    if (chat === "안녕! 반가워!")
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(
+            HttpResponse.json({
+              data: {
+                id: Date.now(),
+                userId: 2,
+                message: "안녕하세요! 반가워요!",
+                role: "assistant",
+                messageType: "normal",
+                createdAt: new Date().toISOString(),
+              },
+            })
+          );
+        }, 3000);
+      });
+
+    if (chat === "혹시 어떤 고민이든 들어주는거야?")
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(
+            HttpResponse.json({
+              data: {
+                id: Date.now(),
+                userId: 2,
+                message:
+                  "그럼요 물론이죠! 편하게 말해주세요. 어떤 고민이 있어요?",
+                role: "assistant",
+                messageType: "normal",
+                createdAt: new Date().toISOString(),
+              },
+            })
+          );
+        }, 3000);
+      });
+    if (chat === "사실 나 요즘 조금 힘들어. 가끔씩은 죽고싶은 마음이 들어")
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(
+            HttpResponse.json({
+              data: {
+                id: Date.now(),
+                userId: 2,
+                message: "저런... 지금 많이 힘드시죠",
+                role: "assistant",
+                messageType: "relatedToSuicide",
+                createdAt: new Date().toISOString(),
+              },
+            })
+          );
+        }, 3000);
+      });
   }),
 ];

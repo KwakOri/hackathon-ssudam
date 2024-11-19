@@ -33,7 +33,9 @@ const SignInPage = () => {
 
       if (response.status !== 200) return;
       navigate.replace("/");
-    } catch (e: any) {}
+    } catch (e: any) {
+      console.log(e);
+    }
   };
   return (
     <section className="w-full">
