@@ -4,11 +4,20 @@ import Paragraph from "@/components/atoms/Paragraph";
 import CheckInput from "@/components/molecules/CheckInput";
 import Textfield from "@/components/molecules/Textfield";
 import SignupFunnelStep from "@/components/templates/SignupFunnelStep";
+import { useAddress } from "@/contexts/Address/address.context";
 import api from "@/services/service";
 import { ChangeEventHandler, useEffect, useState } from "react";
 
-type StepTypes = "email" | "password" | "nickname" | "principles" | "done";
+type StepTypes =
+  | "email"
+  | "password"
+  | "nickname"
+  | "address"
+  | "age"
+  | "principles"
+  | "done";
 interface UserInfoTypes {
+  address: string;
   email: string;
   password: string;
   nickname: string;
@@ -25,6 +34,7 @@ const emailReg = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 const SignupFunnel = () => {
   const [currentStep, setCurrentStep] = useState<StepTypes>("email");
   const [userInfo, setUserInfo] = useState<UserInfoTypes>({
+    address: "",
     email: "",
     password: "",
     nickname: "",
@@ -33,6 +43,8 @@ const SignupFunnel = () => {
     isPasswordValid: false,
     isNicknameValid: false,
   });
+
+  const address = useAddress();
 
   console.log(userInfo);
   const [TOS, setTOS] = useState({
@@ -68,13 +80,13 @@ const SignupFunnel = () => {
         <SignupFunnelStep
           title={"회원가입"}
           onClick={async () => {
-            // const isOk = await api.auth.verifyEmail({
-            //   email: userInfo.email,
-            //   verifyCode: userInfo.authCode,
-            // });
-            // console.log(isOk);
-            // if (isOk.status !== 200)
-            //   return alert("인증번호가 일치하지 않습니다.");
+            const isOk = await api.auth.verifyEmail({
+              email: userInfo.email,
+              verifyCode: userInfo.authCode,
+            });
+            console.log(isOk);
+            if (isOk.status !== 200)
+              return alert("인증번호가 일치하지 않습니다.");
             setCurrentStep("password");
           }}
         >
@@ -90,13 +102,13 @@ const SignupFunnel = () => {
             <Textfield
               buttonLabel={isAuthenticationMailSent ? "재전송" : "전송"}
               buttonOnClick={async () => {
-                // if (!userInfo.isEmailValid) return;
+                if (!userInfo.isEmailValid) return;
                 setIsAuthenticationMailSent(true);
                 setExpiredDate(Date.now() + 1000 * 60 * 3);
-                // const res = await api.auth.checkIsExistingEmail({
-                //   email: userInfo.email,
-                // });
-                // console.log(res);
+                const res = await api.auth.checkIsExistingEmail({
+                  email: userInfo.email,
+                });
+                console.log(res);
               }}
               label="이메일"
               placeholder="이메일을 입력해주세요."
@@ -164,7 +176,7 @@ const SignupFunnel = () => {
       {currentStep === "nickname" && (
         <SignupFunnelStep
           title={"회원가입"}
-          onClick={() => setCurrentStep("principles")}
+          onClick={() => setCurrentStep("address")}
         >
           <div>
             <Paragraph fontSize={"title1"} fontWeight={"bold"}>
@@ -200,17 +212,50 @@ const SignupFunnel = () => {
           />
         </SignupFunnelStep>
       )}
+
+      {currentStep === "address" && (
+        <SignupFunnelStep
+          title={"회원가입"}
+          onClick={() => setCurrentStep("principles")}
+        >
+          <div>
+            <Paragraph fontSize={"title1"} fontWeight={"bold"}>
+              주소를
+            </Paragraph>
+            <Paragraph fontSize={"title1"} fontWeight={"bold"}>
+              입력해주세요
+            </Paragraph>
+          </div>
+          <div
+            onClick={async () => {
+              const postCode = await address.open();
+              if (!postCode) return;
+              setUserInfo((prev) => ({ ...prev, address: postCode.address }));
+            }}
+          >
+            <Textfield
+              label="주소"
+              placeholder="주소를 입력해주세요."
+              helperMessage="주소를 입력해주세요"
+              value={userInfo.address}
+            />
+          </div>
+        </SignupFunnelStep>
+      )}
       {currentStep === "principles" && (
         <SignupFunnelStep
           title={"회원가입"}
           onClick={async () => {
-            const isOk = await api.auth.signUp({
-              email: userInfo.email,
-              password: userInfo.password,
-              name: userInfo.nickname,
-            });
-            console.log(isOk);
-            setCurrentStep("done");
+            try {
+              const res = await api.auth.signUp({
+                email: userInfo.email,
+                password: userInfo.password,
+                name: userInfo.nickname,
+                address: userInfo.address,
+                ageGroup: "20대",
+              });
+              console.log(res);
+            } catch {}
           }}
         >
           <div>

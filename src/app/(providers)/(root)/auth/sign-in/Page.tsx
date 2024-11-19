@@ -5,6 +5,7 @@ import Button from "@/components/atoms/Button";
 import Header from "@/components/molecules/Header";
 import Textfield from "@/components/molecules/Textfield";
 import api from "@/services/service";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useState } from "react";
 
@@ -33,8 +34,10 @@ const SignInPage = () => {
 
       if (response.status !== 200) return;
       navigate.replace("/");
-    } catch (e: any) {
-      console.log(e);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log(error);
+      }
     }
   };
   return (

@@ -6,9 +6,14 @@ import FilterTitle from "@/components/molecules/FilterTitle";
 import Header from "@/components/molecules/Header";
 import { useState } from "react";
 
+import Loading from "@/components/atoms/Loading/Loading";
 import Section from "@/components/Layouts/Section/Section";
 import CardListBox from "@/components/organisms/CardListBox";
 import Carousel from "@/components/organisms/Carousel";
+import api from "@/services/service";
+import { sortByTypes, SupportProgram } from "@/types/information/types";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 const cardData = [
   {
@@ -56,7 +61,29 @@ interface BadgeInfo {
 } //추후 mck데이터에 넣을 예정
 
 export default function InformationPage() {
+  const navigate = useRouter();
   const [isFilter, setIsFilter] = useState(false);
+  const [sortBy, setSortBy] = useState<sortByTypes>("desc");
+  console.log(sortBy);
+  const { data, isPending } = useQuery({
+    queryKey: ["support", sortBy],
+    queryFn: () => api.information.getAllSupportSortBy(sortBy),
+    select: (data) => {
+      return data.result.map((item: SupportProgram) => {
+        return {
+          id: item.id,
+          type: "card",
+          title: item.title,
+          badges: [
+            { content: "육아", intent: "yellow_light" },
+            { content: "임신", intent: "gray_light" },
+            { content: "자립", intent: "primary" },
+          ],
+        };
+      });
+    },
+  });
+  if (isPending) return <Loading />;
   return (
     <Page className="flex flex-col gap-4 overflow-y-scroll">
       <Header intent="main" />
@@ -81,12 +108,14 @@ export default function InformationPage() {
           ]}
         />
         <FilterTitle
+          selectedValue={sortBy}
+          setSelectedValue={(value: sortByTypes) => setSortBy(value)}
           title="지원정보"
           select={[
-            { value: "최신순", label: "최신순" },
-            { value: "오래된순", label: "오래된순" },
-            { value: "인기순", label: "인기순" },
-            { value: "스크랩순", label: "스크랩순" },
+            { value: "desc", label: "최신순" },
+            { value: "asc", label: "오래된순" },
+            { value: "viewCount", label: "인기순" },
+            { value: "scrapCount", label: "스크랩순" },
           ]}
         />
         <div className="flex gap-[6px] mx-4">
@@ -103,13 +132,21 @@ export default function InformationPage() {
         <Divider intent={"horizontal"} />
       </Section>
       <Section className="flex flex-col justify-center items-center mx-4 ">
-        {cardData.map((card, index) => (
-          <div key={index}>
+        {data.map((card: SupportProgram) => (
+          <div
+            key={card.id}
+            onClick={() => navigate.push(`/information/${card.id}`)}
+          >
             <CardListBox
               title={card.title}
-              isChecked={card.isChecked}
-              badges={card.badges as BadgeInfo[]}
-              content={card.content}
+              isChecked={false}
+              badges={
+                [
+                  { content: "Label 1", intent: "gray_light" },
+                  { content: "Label 2", intent: "gray_light" },
+                ] as BadgeInfo[]
+              }
+              content={card?.supportContent ?? ""}
               from={card.from}
             />
             <div className="mt-2">
