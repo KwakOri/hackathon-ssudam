@@ -43,7 +43,7 @@ const SignupFunnel = () => {
   });
   const [isAuthenticationMailSent, setIsAuthenticationMailSent] =
     useState<boolean>(false);
-  const [expiredDate, setExpiredDate] = useState<number | null>(null);
+  const [expireDate, setExpiredDate] = useState<number | null>(null);
 
   const onEmailChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setUserInfo((prev) => ({
@@ -68,13 +68,13 @@ const SignupFunnel = () => {
         <SignupFunnelStep
           title={"회원가입"}
           onClick={async () => {
-            const isOk = await api.auth.verifyEmail({
-              email: userInfo.email,
-              verifyCode: userInfo.authCode,
-            });
-            console.log(isOk);
-            if (isOk.status !== 200)
-              return alert("인증번호가 일치하지 않습니다.");
+            // const isOk = await api.auth.verifyEmail({
+            //   email: userInfo.email,
+            //   verifyCode: userInfo.authCode,
+            // });
+            // console.log(isOk);
+            // if (isOk.status !== 200)
+            //   return alert("인증번호가 일치하지 않습니다.");
             setCurrentStep("password");
           }}
         >
@@ -88,14 +88,15 @@ const SignupFunnel = () => {
           </div>
           <div>
             <Textfield
-              buttonLabel="인증"
+              buttonLabel={isAuthenticationMailSent ? "재전송" : "전송"}
               buttonOnClick={async () => {
-                if (!userInfo.isEmailValid) return;
+                // if (!userInfo.isEmailValid) return;
                 setIsAuthenticationMailSent(true);
-                const res = await api.auth.checkIsExistingEmail({
-                  email: userInfo.email,
-                });
-                console.log(res);
+                setExpiredDate(Date.now() + 1000 * 60 * 3);
+                // const res = await api.auth.checkIsExistingEmail({
+                //   email: userInfo.email,
+                // });
+                // console.log(res);
               }}
               label="이메일"
               placeholder="이메일을 입력해주세요."
@@ -121,6 +122,13 @@ const SignupFunnel = () => {
                     " text-label-strong placeholder-label-alternative bg-transparent outline-none"
                   }
                 />
+                <Paragraph>
+                  {expireDate
+                    ? `${Math.floor(
+                        Math.floor((expireDate - Date.now()) / 1000) / 60
+                      )}:${Math.floor((expireDate - Date.now()) / 1000) % 60}`
+                    : ""}
+                </Paragraph>
               </div>
             )}
           </div>

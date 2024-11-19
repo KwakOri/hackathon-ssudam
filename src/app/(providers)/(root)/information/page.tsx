@@ -1,13 +1,14 @@
 "use client";
-import Header from "@/components/molecules/Header";
-import Page from "@/components/Layouts/Page/Page";
-import FilterTitle from "@/components/molecules/FilterTitle";
 import Chip from "@/components/atoms/Chip";
 import Divider from "@/components/atoms/Divider";
+import Page from "@/components/Layouts/Page/Page";
+import FilterTitle from "@/components/molecules/FilterTitle";
+import Header from "@/components/molecules/Header";
+import { useState } from "react";
 
 import Section from "@/components/Layouts/Section/Section";
-import Carousel from "@/components/organisms/Carousel";
 import CardListBox from "@/components/organisms/CardListBox";
+import Carousel from "@/components/organisms/Carousel";
 
 const cardData = [
   {
@@ -55,6 +56,7 @@ interface BadgeInfo {
 } //추후 mck데이터에 넣을 예정
 
 export default function InformationPage() {
+  const [isFilter, setIsFilter] = useState(false);
   return (
     <Page className="flex flex-col gap-4 overflow-y-scroll">
       <Header intent="main" />
@@ -88,7 +90,11 @@ export default function InformationPage() {
           ]}
         />
         <div className="flex gap-[6px] mx-4">
-          <Chip isIcon={true} isActive={false} />
+          <Chip
+            isIcon={true}
+            isActive={isFilter}
+            onClick={() => setIsFilter(!isFilter)}
+          />
           <Chip>지역</Chip>
           <Chip>대상</Chip>
           <Chip>유형</Chip>

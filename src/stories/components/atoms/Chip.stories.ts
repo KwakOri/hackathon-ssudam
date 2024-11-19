@@ -10,7 +10,7 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    isActive: { description: "실행 여부", control: "boolean" },
+    isChecked: { description: "실행 여부", control: "boolean" },
     isIcon: { description: "아이콘 변경", control: "boolean" },
   },
   args: {},
@@ -23,6 +23,6 @@ export const Default: Story = {
   args: {
     children: "label",
     isIcon: false,
-    isActive: true,
+    isChecked: true,
   },
 };
