@@ -26,6 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
+    "src/types/**/*.d.ts",
     "src/stories/components/molecules/SidebarCategory.stories.tsㅌ"
   ],
   "exclude": ["node_modules"]

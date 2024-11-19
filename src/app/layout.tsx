@@ -21,6 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="kr" className={`${pretendard.variable} w-full h-full`}>
+      <head>
+        {" "}
+        <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=REACT_APP_KAKAOMAP_KEY&libraries=services"></script>
+      </head>
       <body className={`${pretendard.className} w-full h-full`}>
         <div className={"w-full h-full fixed overflow-hidden"}>{children}</div>
       </body>
