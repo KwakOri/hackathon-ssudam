@@ -1,15 +1,33 @@
 "use client";
-import Chip from "@/components/atoms/Chip";
-import Divider from "@/components/atoms/Divider";
+
 import Page from "@/components/Layouts/Page/Page";
-import FilterTitle from "@/components/molecules/FilterTitle";
 import Header from "@/components/molecules/Header";
-import { useState } from "react";
-
+import FilterTitle from "@/components/molecules/FilterTitle";
+import Chip from "@/components/atoms/Chip";
 import Section from "@/components/Layouts/Section/Section";
+import Divider from "@/components/atoms/Divider";
 import CardListBox from "@/components/organisms/CardListBox";
-import Carousel from "@/components/organisms/Carousel";
 
+interface BadgeInfo {
+  content: React.ReactNode;
+  intent:
+    | "primary"
+    | "primary_light"
+    | "purple"
+    | "purple_light"
+    | "brown"
+    | "brown_light"
+    | "yellow"
+    | "yellow_light"
+    | "red"
+    | "red_light"
+    | "green"
+    | "green_light"
+    | "blue"
+    | "blue_light"
+    | "gray"
+    | "gray_light";
+}
 const cardData = [
   {
     title: "Title 1",
@@ -34,54 +52,15 @@ const cardData = [
     from: "여성가족부",
   },
 ];
-interface BadgeInfo {
-  content: React.ReactNode;
-  intent:
-    | "primary"
-    | "primary_light"
-    | "purple"
-    | "purple_light"
-    | "brown"
-    | "brown_light"
-    | "yellow"
-    | "yellow_light"
-    | "red"
-    | "red_light"
-    | "green"
-    | "green_light"
-    | "blue"
-    | "blue_light"
-    | "gray"
-    | "gray_light";
-} //추후 mck데이터에 넣을 예정
 
-export default function InformationPage() {
-  const [isFilter, setIsFilter] = useState(false);
+export default function ScrapPage() {
   return (
-    <Page className="flex flex-col gap-4 overflow-y-scroll">
-      <Header intent="main" />
+    <Page>
+      <Header intent="main" title="스크랩" />
       <Section>
-        <Carousel
-          carouselItems={[
-            {
-              type: "image",
-              src: "/images/Property1.png",
-              alt: "Image 1",
-            },
-            {
-              type: "image",
-              src: "/images/Property2.png",
-              alt: "Image 2",
-            },
-            {
-              type: "image",
-              src: "/images/Property3.png",
-              alt: "Image 3",
-            },
-          ]}
-        />
         <FilterTitle
           title="지원정보"
+          max={4}
           select={[
             { value: "최신순", label: "최신순" },
             { value: "오래된순", label: "오래된순" },
@@ -90,11 +69,7 @@ export default function InformationPage() {
           ]}
         />
         <div className="flex gap-[6px] mx-4">
-          <Chip
-            isIcon={true}
-            isActive={isFilter}
-            onClick={() => setIsFilter(!isFilter)}
-          />
+          <Chip isIcon={true} isActive={false} />
           <Chip>지역</Chip>
           <Chip>대상</Chip>
           <Chip>유형</Chip>
@@ -102,7 +77,8 @@ export default function InformationPage() {
         </div>
         <Divider intent={"horizontal"} />
       </Section>
-      <Section className="flex flex-col justify-center items-center mx-4 ">
+
+      <Section className="flex flex-col justify-center items-center mx-4 mt-4">
         {cardData.map((card, index) => (
           <div key={index}>
             <CardListBox
