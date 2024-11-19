@@ -1,4 +1,8 @@
-import { ChatMessage, MessageType } from "@/types/chat/chat.types";
+import {
+  birthSupportDataTypes,
+  ChatMessage,
+  MessageType,
+} from "@/types/chat/chat.types";
 
 export class UserChatRecord {
   public id: number;
@@ -24,7 +28,11 @@ export class UserChatRecord {
     };
   }
 
-  fromChatGPTMessage(message: string, messageType: MessageType): ChatMessage {
+  fromChatGPTMessage(
+    message: string,
+    messageType: MessageType,
+    birthSupportData: birthSupportDataTypes
+  ): ChatMessage {
     return {
       id: Date.now(),
       userId: this.userId,
@@ -32,6 +40,7 @@ export class UserChatRecord {
       role: "assistant",
       messageType: messageType,
       createdAt: new Date().toISOString(),
+      birthSupportData,
     };
   }
 }

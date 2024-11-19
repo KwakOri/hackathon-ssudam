@@ -1,5 +1,13 @@
 import { AxiosInstance } from "axios";
 
+interface SignUpTypes {
+  email: string;
+  password: string;
+  name: string;
+  address: string;
+  ageGroup: string;
+}
+
 class AuthAPI {
   private client: AxiosInstance;
 
@@ -42,19 +50,13 @@ class AuthAPI {
     return response.data;
   }
 
-  async signUp({
-    email,
-    password,
-    name,
-  }: {
-    email: string;
-    password: string;
-    name: string;
-  }) {
+  async signUp({ email, password, name, address, ageGroup }: SignUpTypes) {
     const response = await this.client.post(`/auth/sign-up`, {
       email,
       password,
       name,
+      address,
+      ageGroup,
     });
     return response.data;
   }

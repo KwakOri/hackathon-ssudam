@@ -26,6 +26,8 @@ const Header = ({
   intent,
   children,
   title = "",
+  leftIconOnClink,
+  rightIconOnClink,
 }: PropsWithChildren<HeaderProps>) => {
   const sidebar = useSidebar();
   return (
@@ -76,7 +78,10 @@ const Header = ({
 
       {intent === "labelWithCloseIcon" && (
         <>
-          <button className="opacity-0 pointer-events-none">
+          <button
+            className="opacity-0 pointer-events-none"
+            onClick={leftIconOnClink}
+          >
             <SVGIcon icon={"ArrowLeft"} />
           </button>
           <div className="flex gap-2">
@@ -90,7 +95,7 @@ const Header = ({
 
       {intent === "labelWithBackIcon" && (
         <>
-          <button className="">
+          <button className="" onClick={leftIconOnClink}>
             <SVGIcon icon={"ArrowLeft"} />
           </button>
           <div className="flex gap-2">
