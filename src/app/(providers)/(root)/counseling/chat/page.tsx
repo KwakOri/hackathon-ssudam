@@ -25,9 +25,13 @@ const ChatPage = () => {
   });
 
   const { mutate, isPending } = useMutation({
-    mutationFn: (chat: string) => api.counseling.postChat(chat),
+    mutationFn: (chat: string) => api.counseling.postChat(chat, true),
     onSuccess: (data: ChatMessage) => {
-      setChats((prev) => [...prev, data]);
+      const newChat = new UserChatRecord();
+      setChats((prev) => [
+        ...prev,
+        newChat.fromChatGPTMessage(data.message, data.messageType),
+      ]);
     },
   });
 
@@ -37,7 +41,7 @@ const ChatPage = () => {
   const onChatSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newChat = new UserChatRecord();
-    console.log(newChat.toChatMessage(chatInput));
+
     setChats((prev) => [...prev, newChat.toChatMessage(chatInput)]);
     mutate(chatInput);
     setChatInput("");
@@ -81,7 +85,7 @@ const ChatPage = () => {
               <ChatBox
                 key={chat.id}
                 lastChatRef={isLastIndex ? lastChatRef : null}
-                isMine={chat.sender === "user"}
+                isMine={chat.role === "user"}
                 isTimeVisible={isTimeVisible}
                 time={time}
               >

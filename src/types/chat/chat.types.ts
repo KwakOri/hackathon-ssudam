@@ -1,16 +1,19 @@
-export type MessageType = "normal" | "otherMessageTypesIfAny";
+export type MessageType =
+  | "normal"
+  | "relatedToSuicide"
+  | "askingGovernmentHelp";
 
 export interface ChatMessage {
   id: number;
   userId: number;
   message: string;
-  sender: "user" | "assistant";
+  role: "user" | "assistant";
   messageType: MessageType;
-  createdAt: string; // ISO date string
+  createdAt: string;
 }
 
 export interface ChatResponse {
-  data: ChatMessage[];
+  data: { data: ChatMessage[] };
 }
 
 export interface ChatGPTResponse {

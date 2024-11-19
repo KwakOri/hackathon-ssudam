@@ -59,9 +59,9 @@ const ChatBoxTextVariants = cva("", {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface ChatBoxProps extends VariantProps<typeof ChatBoxVariants> {
-  time: string;
-  isTimeVisible: boolean;
-  lastChatRef: React.RefObject<HTMLDivElement> | null;
+  time?: string;
+  isTimeVisible?: boolean;
+  lastChatRef?: React.RefObject<HTMLDivElement> | null;
 }
 
 const ChatBox = forwardRef<HTMLElement, PropsWithChildren<ChatBoxProps>>(

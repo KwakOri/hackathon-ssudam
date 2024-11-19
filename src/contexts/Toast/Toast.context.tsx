@@ -34,17 +34,16 @@ export const ToastProvider = ({ children }: PropsWithChildren) => {
       content: ToastTypes["content"];
       intent: "normal" | "strong" | "accept" | "warning";
     }) => {
-      setToasts((prev) => [{ id: uuidv4(), content, intent }, ...prev]);
+      setToasts(() => [{ id: uuidv4(), content, intent }]);
     },
     delete: (id: ToastTypes["id"]) => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
     },
   };
-  console.log(toasts);
 
   return (
     <ToastContext.Provider value={value}>
-      <div className="absolute top-16 flex flex-col gap-2 w-full px-4 z-50">
+      <div className="absolute top-20 flex flex-col gap-2 w-full px-4 z-50">
         {toasts.length > 0 &&
           toasts.map((toast) => (
             <Toast
