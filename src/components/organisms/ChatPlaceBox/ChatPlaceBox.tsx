@@ -19,7 +19,7 @@ const ChatPlaceBox = ({
   return (
     <article
       className={
-        "bg-background-normal neon-light rounded-[18px] flex flex-col gap-4 p-4 w-40"
+        "bg-background-normal neon-light rounded-[18px] flex flex-col gap-4 p-4 w-40 shrink-0"
       }
     >
       <div className={"flex flex-col gap-1"}>
