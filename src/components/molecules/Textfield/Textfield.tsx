@@ -26,7 +26,7 @@ const Textfield = ({
   errorMessage,
   buttonLabel = "",
   IsInputDelButton = false,
-  isValid = false,
+  isValid = true,
   ...props
 }: ITextfieldProps) => {
   return (
