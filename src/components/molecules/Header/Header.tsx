@@ -1,9 +1,12 @@
 "use client";
 
+import LogoHor from "/public/images/logo_hor.png";
+
 import Avatar from "@/components/atoms/Avatar";
 import Paragraph from "@/components/atoms/Paragraph/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
 import { useSidebar } from "@/contexts/Sidebar/Sidebar.context";
+import Image from "next/image";
 import { PropsWithChildren } from "react";
 
 interface HeaderProps {
@@ -29,8 +32,10 @@ const Header = ({
     <div className="px-4 flex justify-between items-center w-full h-[58px] border-b border-line-normal bg-background-normal shrink-0">
       {intent === "main" && (
         <>
-          <div className="flex gap-2">
-            <Paragraph>LOGO</Paragraph>
+          <div className="flex gap-2 h-full items-center">
+            <div className="relative w-[120px] h-[32px]">
+              <Image src={LogoHor} alt="logo" fill />
+            </div>
             <Paragraph>{title}</Paragraph>
           </div>
           <button onClick={() => sidebar.open()}>

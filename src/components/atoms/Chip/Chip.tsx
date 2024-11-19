@@ -4,7 +4,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes, PropsWithChildren } from "react";
 import Paragraph from "../Paragraph";
 
-const ChipVariants = cva("rounded-full px-[12px]", {
+const ChipVariants = cva("rounded-full px-[12px] py-[6px]", {
   variants: {
     isActive: {
       true: "bg-primary-light text-primary-heavy border border-primary-heavy",
@@ -45,7 +45,7 @@ const Chip = ({
         <Paragraph
           fontSize={"label"}
           fontWeight={"medium"}
-          className="text-label-neutral"
+          className={isActive ? "text-primary-heavy" : "text-label-neutral"}
         >
           {children}
         </Paragraph>

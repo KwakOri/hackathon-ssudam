@@ -1,6 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
 
-const DividerVariants = cva(" bg-line-normal rounded-full", {
+const DividerVariants = cva(" bg-line-normal rounded-full shrink-0", {
   variants: {
     intent: {
       vertical: "w-[2px] h-6",

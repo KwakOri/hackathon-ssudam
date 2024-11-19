@@ -18,10 +18,20 @@ const SurveyTitle = ({
 }: SurveyTitleProps) => {
   return (
     <div className={"flex flex-col gap-1"}>
-      <div className={"w-full flex justify-between"}>
-        <div className={"flex gap-2"}>
-          <Paragraph>{title}</Paragraph>
-          <Paragraph>
+      <div className={"w-full flex justify-between items-center"}>
+        <div className={"flex gap-2 items-center"}>
+          <Paragraph
+            fontSize={"body1"}
+            fontWeight={"semibold"}
+            className={"text-label-normal"}
+          >
+            {title}
+          </Paragraph>
+          <Paragraph
+            fontSize={"caption1"}
+            fontWeight={"medium"}
+            className={"text-label-alternative"}
+          >
             {currentStep}/{steps}
           </Paragraph>
         </div>
@@ -34,7 +44,13 @@ const SurveyTitle = ({
           }`}
         />
       </div>
-      <Paragraph>{description}</Paragraph>
+      <Paragraph
+        fontSize={"caption1"}
+        fontWeight={"medium"}
+        className={"text-label-neutral"}
+      >
+        {description}
+      </Paragraph>
     </div>
   );
 };
