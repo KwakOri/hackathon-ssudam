@@ -207,9 +207,10 @@ const CounselingFunnel = () => {
                 content: "모드를 정해주세요",
                 intent: "warning",
               });
-            await api.counseling.postChat(
+            await api.counseling.postFirstChat(
               "안녕! 반가워!",
-              mode === "formal" ? true : false
+              mode === "formal" ? true : false,
+              name
             );
             navigate.push("/counseling/chat");
           }}

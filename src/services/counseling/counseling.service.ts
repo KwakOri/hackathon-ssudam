@@ -1,4 +1,4 @@
-import { ChatResponse } from "@/types/chat/chat.types";
+import { PrevChatResponse } from "@/types/chat/chat.types";
 import { AxiosInstance } from "axios";
 
 class CounselingAPI {
@@ -10,21 +10,42 @@ class CounselingAPI {
 
   async getPrevChats() {
     console.log(localStorage.getItem("ACCESS_TOKEN"));
-    const res: ChatResponse = await this.client.get("/chat/chat-user-list", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
-      },
-    });
+    const res: PrevChatResponse = await this.client.get(
+      "/chat/chat-user-list",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+        },
+      }
+    );
+    console.log(res);
 
     return res.data.data;
   }
 
-  async postChat(chat: string, isRespectful: boolean) {
+  async postFirstChat(chat: string, isRespectful: boolean, name: string) {
     const res: any = await this.client.post(
       "/chat",
       {
         message: chat,
         isRespectful: isRespectful,
+        chatName: name,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("ACCESS_TOKEN")}`,
+        },
+      }
+    );
+    console.log(res);
+    return res.data.data;
+  }
+
+  async postChat(chat: string) {
+    const res: any = await this.client.post(
+      "/chat",
+      {
+        message: chat,
       },
       {
         headers: {

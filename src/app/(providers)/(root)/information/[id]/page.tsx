@@ -5,10 +5,22 @@ import Paragraph from "@/components/atoms/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
 import Page from "@/components/Layouts/Page/Page";
 import Section from "@/components/Layouts/Section/Section";
-import CardListTitle from "@/components/molecules/CardListTitle";
 import DetailText from "@/components/molecules/DetailText";
+import api from "@/services/service";
+import { SupportProgram } from "@/types/information/types";
+import { useQuery } from "@tanstack/react-query";
+import { usePathname } from "next/navigation";
 
-export default function InformationPage() {
+export default function InformationDetailPage() {
+  const pathname = usePathname();
+  const id = pathname.split("/")[2];
+  const { data, isPending } = useQuery<SupportProgram>({
+    queryKey: ["information", id],
+    queryFn: () => api.information.getSupportDetail(Number(id)),
+  });
+  console.log(data);
+
+  if (isPending) return <h1>Loading...</h1>;
   return (
     <Page className="flex flex-col bg-gradient-to-b from-primary-heavy via-green-95 to-green-95 ">
       <div className=" flex px-4  justify-between items-center w-full h-[58px] shrink-0">

@@ -35,6 +35,7 @@ interface CardInfoBoxProps {
   badges: BadgeInfo[];
   options?: OptionInfo[];
   isOption: boolean;
+  className?: string;
 }
 
 const CardInfoBox = ({
@@ -43,12 +44,13 @@ const CardInfoBox = ({
   badges,
   options,
   isOption,
+  className,
 }: PropsWithChildren<CardInfoBoxProps>) => {
   return (
     <div
       className={`flex flex-col gap-1 bg-background-normal rounded-[18px] p-[16px] border border-line-normal ${
         isOption ? "w-[200px]" : "w-[240px]"
-      }`}
+      } ${className}`}
     >
       <CardTitle title={title} isChecked={isChecked} />
       <div className="flex gap-1">

@@ -3,6 +3,7 @@
 import Paragraph from "@/components/atoms/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
 import SelectInput from "@/components/atoms/SelectInput";
+import { sortByTypes } from "@/types/information/types";
 import { cn } from "@/utils/cn";
 import { cva } from "class-variance-authority";
 import { useState } from "react";
@@ -25,11 +26,18 @@ interface SelectInputSectionProps {
   title: string;
   select?: SelectInfo[];
   max?: number;
+  selectedValue: sortByTypes;
+  setSelectedValue: (value: sortByTypes) => void;
 }
 
-const FilterTitle = ({ title, select, max }: SelectInputSectionProps) => {
+const FilterTitle = ({
+  selectedValue,
+  setSelectedValue,
+  title,
+  select,
+  max,
+}: SelectInputSectionProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedValue, setSelectedValue] = useState<string>("");
 
   const toggleSelectBox = () => {
     setIsOpen((prev) => !prev);

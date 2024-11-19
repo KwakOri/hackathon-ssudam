@@ -57,7 +57,7 @@ const Textfield = ({
             placeholder={" " + placeholder}
             type="text"
             className={
-              " text-label-strong placeholder-label-alternative bg-transparent outline-none"
+              " text-label-strong placeholder-label-alternative bg-transparent outline-none grow"
             }
             {...props}
           />

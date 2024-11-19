@@ -7,8 +7,30 @@ import SectionTitle from "@/components/molecules/SectionTitle";
 import Carousel from "@/components/organisms/Carousel";
 import ChatFormalModeBox from "@/components/organisms/ChatModeBox/ChatFormalModeBox";
 import ChatInformalModeBox from "@/components/organisms/ChatModeBox/ChatInformalModeBox";
+import api from "@/services/service";
+import { useQuery } from "@tanstack/react-query";
 
 export default function HomePage() {
+  const { data, isPending } = useQuery({
+    queryKey: ["test"],
+    queryFn: () => api.information.getAllSupports(),
+    // select: (data) => {
+    //   return data.result.map((item: SupportProgram) => {
+    //     return {
+    //       id: item.id,
+    //       type: "card",
+    //       title: item.title,
+    //       badges: [
+    //         { content: "육아", intent: "yellow_light" },
+    //         { content: "임신", intent: "gray_light" },
+    //         { content: "자립", intent: "primary" },
+    //       ],
+    //     };
+    //   });
+    // },
+  });
+
+  if (isPending) return <h1>Loading...</h1>;
   return (
     <Page>
       <Header intent="main"></Header>
@@ -20,48 +42,10 @@ export default function HomePage() {
             <ChatFormalModeBox />
           </div>
         </Section>
+
         <Section>
           <SectionTitle>지원사업 정보</SectionTitle>
-          <Carousel
-            carouselItems={[
-              {
-                type: "card",
-                title: "미혼부모 지원금",
-                badges: [
-                  { content: "육아", intent: "yellow_light" },
-                  { content: "임신", intent: "gray_light" },
-                  { content: "자립", intent: "primary" },
-                ],
-              },
-              {
-                type: "card",
-                title: "미혼부모 지원금",
-                badges: [
-                  { content: "육아", intent: "yellow_light" },
-                  { content: "임신", intent: "gray_light" },
-                  { content: "자립", intent: "primary" },
-                ],
-              },
-              {
-                type: "card",
-                title: "미혼부모 지원금",
-                badges: [
-                  { content: "육아", intent: "yellow_light" },
-                  { content: "임신", intent: "gray_light" },
-                  { content: "자립", intent: "primary" },
-                ],
-              },
-              {
-                type: "card",
-                title: "미혼부모 지원금",
-                badges: [
-                  { content: "육아", intent: "yellow_light" },
-                  { content: "임신", intent: "gray_light" },
-                  { content: "자립", intent: "primary" },
-                ],
-              },
-            ]}
-          />
+          <Carousel carouselItems={data} />
         </Section>
         <Carousel
           carouselItems={[

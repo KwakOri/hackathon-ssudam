@@ -1,7 +1,7 @@
-import { useState } from "react";
 import Paragraph from "@/components/atoms/Paragraph/Paragraph";
 import SVGIcon from "@/components/atoms/SVGIcon";
 import { cva, VariantProps } from "class-variance-authority";
+import { useState } from "react";
 
 const CardTitleVariants = cva("", {
   variants: {
@@ -32,7 +32,7 @@ const CardTitle = ({ title, initialChecked = false }: CardTitleProps) => {
           fontWeight={"medium"}
           className={"text-label-neutral"}
         >
-          From
+          임신육아종합포털
         </Paragraph>
         <button onClick={handleToggleCheck}>
           <SVGIcon icon={isChecked ? "StarFill" : "StarLine"} size={"md"} />

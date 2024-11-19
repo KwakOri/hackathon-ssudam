@@ -25,6 +25,7 @@ interface ChatNoticeInfoProps
   title: string;
   contents: string[];
   buttonLabel: string;
+  className?: string;
 }
 
 const ChatNoticeBox = ({
@@ -32,9 +33,12 @@ const ChatNoticeBox = ({
   contents,
   intent,
   buttonLabel,
+  className,
 }: ChatNoticeInfoProps) => {
   return (
-    <article className={cn(ChatNoticeInfoWrapperVariants({ intent }))}>
+    <article
+      className={cn(ChatNoticeInfoWrapperVariants({ intent, className }))}
+    >
       <Border intent={intent} className={"rounded-[18px]"} />
       <ChatNoticeInfo title={title} contents={contents} intent={intent} />
       <Button intent={intent} size={"md"} className="w-full">

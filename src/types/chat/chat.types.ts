@@ -3,6 +3,7 @@ export type MessageType =
   | "relatedToSuicide"
   | "askingGovernmentHelp";
 
+export type birthSupportDataTypes = { id: number; title: string }[];
 export interface ChatMessage {
   id: number;
   userId: number;
@@ -10,12 +11,20 @@ export interface ChatMessage {
   role: "user" | "assistant";
   messageType: MessageType;
   createdAt: string;
+  birthSupportData?: birthSupportDataTypes;
 }
 
-export interface ChatResponse {
-  data: { data: ChatMessage[] };
+export interface PrevChatResponse {
+  data: {
+    data: {
+      chatList: ChatMessage[];
+      isChatList: boolean;
+    };
+  };
 }
 
 export interface ChatGPTResponse {
-  data: ChatMessage;
+  birthSupportData: birthSupportDataTypes;
+  chatResponse: string;
+  messageType: MessageType;
 }
