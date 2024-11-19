@@ -41,9 +41,8 @@ const Chip = ({
 
   return (
     <button
-      className={cn(ChipVariants({ isActive, isIcon, className }))}
+      className={cn(ChipVariants({ isActive: isActive, isIcon, className }))}
       onClick={handleClick}
-      {...props}
     >
       {isIcon ? (
         <SVGIcon icon={isActive ? "FilterFill" : "FilterLine"} size={"sm"} />
