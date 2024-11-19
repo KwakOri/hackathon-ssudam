@@ -24,9 +24,10 @@ interface SelectInfo {
 interface SelectInputSectionProps {
   title: string;
   select?: SelectInfo[];
+  max?: number;
 }
 
-const FilterTitle = ({ title, select }: SelectInputSectionProps) => {
+const FilterTitle = ({ title, select, max }: SelectInputSectionProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedValue, setSelectedValue] = useState<string>("");
 
@@ -41,17 +42,28 @@ const FilterTitle = ({ title, select }: SelectInputSectionProps) => {
 
   return (
     <div className="flex justify-between mx-4 relative">
-      <Paragraph
-        fontSize={"heading2"}
-        fontWeight={"semibold"}
-        className="text-label-strong flex justify-center items-start pt-3"
-      >
-        {title}
-      </Paragraph>
+      <div className="flex gap-[6px]">
+        {" "}
+        <Paragraph
+          fontSize={"heading2"}
+          fontWeight={"semibold"}
+          className="text-label-strong flex justify-center items-start pt-3"
+        >
+          {title}
+        </Paragraph>
+        <Paragraph
+          fontSize={"caption1"}
+          fontWeight={"medium"}
+          className="text-label-alternative flex justify-center items-start mt-[18px]"
+        >
+          {max}
+        </Paragraph>
+      </div>
+
       <article className=" flex flex-col">
         <section
           onClick={toggleSelectBox}
-          className="w-full flex items-center justify-between cursor-pointer pr-3 relative"
+          className="w-full flex items-center justify-between cursor-pointer  relative"
         >
           <div className="flex-grow">
             {selectedValue ? (
